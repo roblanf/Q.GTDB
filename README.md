@@ -63,7 +63,7 @@ included for training. The text file should have one species name (i.e. header
 in the *.faa) per-line. For example, `data/r207_nitrospinota.taxa` consists of
 all 62 sequences that belong to the Nitrospinota phylum as of version r207.  
 
-## 2. Training: group-specific  
+## 2. Group-specific Q-matrix  
 
 ### 2.1. Subset taxa  
 
@@ -87,7 +87,6 @@ Output the initial total tree length and distribution of branch lengths:
 scripts/tree_length.py pruned.tree
 ```
 
-The tree length will be output to stdout and the histogram to
 `branch_length_histogram.png`.  
 
 Remove long branches with treeshrink and output branch lengths again:  
@@ -113,13 +112,14 @@ Subset relevant taxa first:
 mkdir -p 00_subset_taxa
 for loc in r207_loci/*.faa; do
 	faSomeRecords.py --fasta $loc --list treeshrunk.taxa --outfile 00_subset_taxa/${loc}
+done
 ```  
 
 ### 2.2. Assigning loci for training and testing  
 
 Randomly assign 20 loci for testing, and 100 for training:  
 ```bash
-scripts/get_subtree.py 00_subset_taxa
+scripts/assign_loci_random.sh 00_subset_taxa
 ```
 
 ### 2.3. Initial model selection  
@@ -136,7 +136,7 @@ This scripts counts the frequency of best-fitting models across all loci.
 Then, it selects the models in the top 90% (default cut-off) as the starting
 models `-mset` for training:  
 ```bash
-scripts/count_top_models.py combined.best_scheme > 01_model_selection/starting_models.txt
+scripts/count_top_models.py 01_model_selection/combined.best_scheme > 01_model_selection/starting_models.txt
 ```
 
 **Example output**  
@@ -147,9 +147,53 @@ scripts/count_top_models.py combined.best_scheme > 01_model_selection/starting_m
 > Selecting most frequent models up to 106 loci.  
 > Starting models: Q.yeast,LG,Q.insect  
 
-#### 3b. Selecting the most phylogenetic diverse  
-Subsampling taxa according to phylogenetic diversity requires an input tree.
-This example selects $k=100$ of the most phylogenetically diverse sequences
-from the r207 tree `data/gtdb_r207_bac120_unscaled.decorated.tree`:  
+### 2.4. Training  
 
+**Training modes**  
+
+| Mode              | Name    | Fixed topology? | Linked branch lengths? |
+| ----------------- | ------- | --------------- | ---------------------- |
+| Unconstrained     | uncon   | No              | No                     |
+| Semi-constrained  | semicon | No              | Yes                    |
+| Fully-constrained | fullcon | Yes             | Yes                    |
+
+**Fully constrained**  
+```bash
+scripts/estimate_q.py \ 
+        --mode fullcon \
+        --loci 00_subset_taxa/training_loci/ \
+        -mset Q.yeast,LG,Q.insect \
+        -te pruned_treeshrink/output.tree \
+        -T 4 -v
+```
+
+**Semi-constrained**  
+```bash
+scripts/estimate_q.py \ 
+        --mode semicon \
+        --loci 00_subset_taxa/training_loci/ \
+        -mset Q.yeast,LG,Q.insect \
+        -T 4 -v
+```
+
+**Unconstrained**  
+```bash
+scripts/estimate_q.py \ 
+        --mode uncon \
+        --loci 00_subset_taxa/training_loci/ \
+        -mset Q.yeast,LG,Q.insect \
+        -T 4 -v
+```
+
+### 2.5. Testing  
+Run ModelFinder on the test loci, using the best starting models identified,
+and the estimated Q-matrices.
+
+For example:  
+```bash
+mkdir -p 03_testing
+iqtree2 -T 4 -S 00_subset_loci/testing_loci/ -m MF -pre 03
+_testing/test_loci_mf -mset LG,Q.pfam,Q.insect,02_uncon/Q.uncon_i2,02_semicon/Q.s
+emicon_i2,02_fullcon/Q.fullcon_i2
+```
 
