@@ -40,7 +40,7 @@ rm -r AliStat-1.14/
 This section is an overview of the input files required. The following sections
 will include information on how to generate these depending on the analysis.  
 
-### 1a. Per-locus protein alignments  
+### 1.1. Per-locus protein alignments  
 The pipeline has been developed so that the Q-matrices are trained on the 
 whole, 120 locus data set. Each locus is its own file, with all taxa included.
 All locus files (*.faa) should be in the same directory, for example:  
@@ -52,12 +52,12 @@ r207_loci/
 └── gtdb_r207_bac120_TIGR03953.faa
 ```  
 
-### 1b. Phylogeny  
+### 1.2. Phylogeny  
 This is used to remove fast-evolving sequences (i.e. long branches) that may 
 bias the training. For example, the r207 tree (made by GTDB using the filtered
 and concatenated alignment using FastTree) `data/gtdb_r207_bac120_unscaled.decorated.tree`
 
-### 1c. Taxa list
+### 1.3. Taxa list
 The pipeline requires an input text file listing all the species that should be
 included for training. The text file should have one species name (i.e. header
 in the *.faa) per-line. For example, `data/r207_nitrospinota.taxa` consists of
@@ -65,11 +65,15 @@ all 62 sequences that belong to the Nitrospinota phylum as of version r207.
 
 ## 2. Training: group-specific  
 
-### 2a. Preparing the taxa list  
+### 2.1. Subset taxa  
+
+**Preparing the taxa list**  
+
 Prepare the species list for a single taxonomic rank (i.e. the Nitrospinota
 phylum) using a taxonomy .tsv such as `gtdb_r214_selected_genomes.bacteria.family.tsv`.  
 
-### 2b. Removing long branches  
+**Removing long branches**  
+
 Exclude fast-evolving species (i.e. long branches) that may bias training.  
 
 Subset the group-specific tree from the full reference tree:  
@@ -97,13 +101,13 @@ Identify the number of taxa removed:
 grep -oP "\t" pruned_treeshrink/output.txt | wc -l
 ```
 
+**Subset taxa**  
 Create new taxa list with dropped taxa:  
 ```bash
 # Assuming that these are all genbank accessions that start with G..
 grep -oP "G\d+" pruned_treeshrink/output.tree > treeshrunk.taxa
 ```
 
-### 2c. Assigning loci for training and testing  
 Subset relevant taxa first:
 ```bash
 mkdir -p 00_subset_taxa
@@ -111,9 +115,41 @@ for loc in r207_loci/*.faa; do
 	faSomeRecords.py --fasta $loc --list treeshrunk.taxa --outfile 00_subset_taxa/${loc}
 ```  
 
-### 2d. Assigning loci for training and testing  
+### 2.2. Assigning loci for training and testing  
 
 Randomly assign 20 loci for testing, and 100 for training:  
-```
+```bash
 scripts/get_subtree.py 00_subset_taxa
 ```
+
+### 2.3. Initial model selection  
+Identify the best models for each locus to determine the starting models for
+training:
+```bash
+mkdir -p 01_model_selection
+iqtree2 -S 00_subset_taxa/training_loci -T 4 -pre 01_model_selection/training_loci
+iqtree2 -S 00_subset_taxa/testing_loci -T 4 -pre 01_model_selection/testing_loci
+cat 01_model_selection/*.best_scheme > 01_model_selection/combined.best_scheme
+```  
+
+This scripts counts the frequency of best-fitting models across all loci.
+Then, it selects the models in the top 90% (default cut-off) as the starting
+models `-mset` for training:  
+```bash
+scripts/count_top_models.py combined.best_scheme > 01_model_selection/starting_models.txt
+```
+
+**Example output**  
+
+> [('Q.yeast', 73), ('LG', 27), ('Q.insect', 8), ('Q.pfam', 7), ('HIVw', 1), ('mtZOA', 1)]  
+> Total loci: 117  
+> Cut-off: 0.9  
+> Selecting most frequent models up to 106 loci.  
+> Starting models: Q.yeast,LG,Q.insect  
+
+#### 3b. Selecting the most phylogenetic diverse  
+Subsampling taxa according to phylogenetic diversity requires an input tree.
+This example selects $k=100$ of the most phylogenetically diverse sequences
+from the r207 tree `data/gtdb_r207_bac120_unscaled.decorated.tree`:  
+
+
