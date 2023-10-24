@@ -58,14 +58,22 @@ included for training. The text file should have one species name (i.e. header
 in the *.faa) per-line. For example, `data/r207_nitrospinota.taxa` consists of
 all 62 sequences that belong to the Nitrospinota phylum as of version r207.  
 
-## 2. Group-specific Q-matrix  
+## 2. Q-matrix estimation
 
 ### 2.1. Subset taxa  
 
 **Preparing the taxa list**  
 
+1. Choosing taxa based on taxononmy
+
 Prepare the species list for a single taxonomic rank (i.e. the Nitrospinota
 phylum) using a taxonomy .tsv such as `gtdb_r214_selected_genomes.bacteria.family.tsv`.
+
+2. Choosing taxa any other way
+
+For example, maybe we want to remove taxa that have a lot of gaps, by concatenating all taxa into one alignment, then ranking by gaps.
+
+Either way, we end up with a file that is a taxon list, as described in section 1.3 above.
 
 **Removing long branches**  
 
@@ -73,7 +81,7 @@ Exclude fast-evolving species (i.e. long branches) that may bias training.
 
 Subset the group-specific tree from the full reference tree:  
 ```bash
-scripts/get_subtree.py [ref_tree]
+scripts/get_subtree.py [ref_tree] [taxon_list]
 # output: pruned.tree
 ```  
 
@@ -102,7 +110,14 @@ Create new taxa list with dropped taxa:
 grep -oP "G\d+" pruned_treeshrink/output.tree > treeshrunk.taxa
 ```
 
-Subset relevant taxa first:
+We also want to make the subtree for these taxa
+```bash
+scripts/get_subtree.py [ref_tree] [taxon_list]
+# output: pruned.tree
+```  
+
+Go through each locus and make an alignemnt with just the taxa we want
+
 ```bash
 mkdir -p 00_subset_taxa
 for loc in r207_loci/*.faa; do
@@ -125,7 +140,7 @@ mkdir -p 01_model_selection
 iqtree2 -S 00_subset_taxa/training_loci -T 4 -pre 01_model_selection/training_loci
 iqtree2 -S 00_subset_taxa/testing_loci -T 4 -pre 01_model_selection/testing_loci
 cat 01_model_selection/*.best_scheme > 01_model_selection/combined.best_scheme
-```  
+```
 
 This scripts counts the frequency of best-fitting models across all loci.
 Then, it selects the models in the top 90% (default cut-off) as the starting
@@ -192,8 +207,5 @@ _testing/test_loci_mf -mset LG,Q.pfam,Q.insect,02_uncon/Q.uncon_i2,02_semicon/Q.
 emicon_i2,02_fullcon/Q.fullcon_i2
 ```
 
-## 3. Global Q matrix  
-
-### 3.1. Subset taxa 
 
 
