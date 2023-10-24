@@ -70,7 +70,7 @@ all 62 sequences that belong to the Nitrospinota phylum as of version r207.
 **Preparing the taxa list**  
 
 Prepare the species list for a single taxonomic rank (i.e. the Nitrospinota
-phylum) using a taxonomy .tsv such as `gtdb_r214_selected_genomes.bacteria.family.tsv`.  
+phylum) using a taxonomy .tsv such as `gtdb_r214_selected_genomes.bacteria.family.tsv`.
 
 **Removing long branches**  
 
@@ -196,4 +196,9 @@ iqtree2 -T 4 -S 00_subset_loci/testing_loci/ -m MF -pre 03
 _testing/test_loci_mf -mset LG,Q.pfam,Q.insect,02_uncon/Q.uncon_i2,02_semicon/Q.s
 emicon_i2,02_fullcon/Q.fullcon_i2
 ```
+
+## 3. Global Q matrix  
+
+### 3.1. Subset taxa 
+
 
