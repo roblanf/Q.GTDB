@@ -18,11 +18,6 @@ conda activate qgtdb
 Install faSomeRecords and AliStat:
 
 ```bash
-cd bin/ 
-# faSomeRecords
-wget https://raw.githubusercontent.com/santiagosnchez/faSomeRecords/master/faSomeRecords.py
-chmod +x faSomeRecords.py
-
 # AliStat
 wget https://github.com/thomaskf/AliStat/archive/refs/tags/v1.14.tar.gz
 tar -xzvf v1.14.tar.gz
