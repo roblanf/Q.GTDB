@@ -100,7 +100,7 @@ Since we want to estimate substitutino models, we don't want to include genomes 
 gtdb_r207_bac120_full.faa
 ```
 
-I can then calculate gap proportions like this:
+I can then calculate gap proportions like this (for sure there are quicker and smarter ways using actual software, but I was about to go home for the evening, so this sufficed):
 
 ```{bash}
 awk '/^>/ {if (seq) {print id, seq}; id=substr($1, 2); seq=""; next} {seq=seq$0} END {print id, seq}' gtdb_r207_bac120_full.faa | 
@@ -111,6 +111,32 @@ while read -r id seq; do
     echo -e "$id\t$gap_proportion"
 done > gaps.tsv
 ```
+
+We can look at the distribution:
+
+```{r}
+gaps <- read_delim("gaps.tsv", delim="\t", col_names = c("id", "proportion_gaps"))
+ggplot(gaps, aes(x = proportion_gaps)) + geom_histogram(bins=100)
+```
+
+Let's look at the proportion of sequences with fewer gaps than each threshold:
+
+```{r}
+results <- map_dfr(seq(0, 1, by = 0.01), function(threshold) {
+  proportion_below_threshold <- mean(gaps$proportion_gaps < threshold)
+  tibble(threshold = threshold, proportion_below = proportion_below_threshold)
+})
+
+head(results, 20)
+```
+
+This gives:
+
+```
+
+```
+
+So a sensible cutoff here is to only keep taxa with <15% gaps - this means we only throw out x% of the dataset.
 
 ### Subset the remaining taxa
 
