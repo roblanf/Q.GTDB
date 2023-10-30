@@ -696,7 +696,20 @@ Now let's start a matrix running which is estimated by order. To do this, I'll s
 analysis="class_1"
 ```
 
-and then just set it running with
+These alignments are big, and estimating models will be very expensive (particularly free rate models).
+
+So I'll also look at just four models here, based on the previous analyses, by changing the script to:
+
+```{bash}
+model_set="LG,Q.pfam,Q.insect,Q.yeast"
+
+mkdir 02_fullcon # first make the output directory
+iqtree2 -T 100 -p loci/training_loci -m MFP -cmax 8 -mset $model_set -te $analysis.tree -pre 02_fullcon/iteration_1
+```
+
+I chose these models because in the phylum level analysis they represented 98% of genes, and in the class-level analysis they represented 100% of genes.
+
+Now I can just set it running with
 
 ```{bash}
 bash order_1.sh
