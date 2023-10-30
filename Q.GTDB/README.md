@@ -458,7 +458,7 @@ common_1_3 <- length(intersect(order_1, order_3))
 common_2_3 <- length(intersect(order_2, order_3))
 ```
 
-They have ~120 IDs in common, respectively, so the majority (about 200) of the IDs are different between each pair. This is good. 
+They have ~490 IDs in common, respectively, so about half (about 500) of the IDs are different between each pair. This is OK. 
 
 Let's write out these lists for future usage...
 
@@ -598,6 +598,8 @@ Once this is done we can do more iterations...
 Let's do the same for the class_1.txt list, but this time with a single bash script...
 
 
+I'll write a very very simple log file as I go, so I can see if things go wrong.
+
 ```{bash}
 
 analysis="class_1"
@@ -683,4 +685,19 @@ echo "Estimating Q matrix with IQ-TREE2" >> log.txt
 
 iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -te 02_fullcon/iteration_1.treefile --init-model $initial_model --model-joint GTR20+FO -pre 02_fullcon/iteration_1.GTR20
 
+```
+
+
+### Q.order_1
+
+Now let's start a matrix running which is estimated by order. To do this, I'll save the above as a bash script called `order_1.sh`, change the first line to
+
+```{bash}
+analysis="class_1"
+```
+
+and then just set it running with
+
+```{bash}
+bash order_1.sh
 ```
