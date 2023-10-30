@@ -274,6 +274,35 @@ tax %>% filter(id %in% treeshrink)
 
 These are all species with a LOT of gaps, highlighting the issues with these kinds of taxa!
 
+
+### Correlation between branch lengths and gaps
+
+Let's check to see the scale of the problem. 
+
+First we get the terminal branch lengths, then add them to the main tibble
+
+```{r}
+t <- read.tree("r207_original_clean.tree")
+tip_names <- t$tip.label
+terminal_branch_lengths <- t$edge.length[t$edge[, 2] <= length(tip_names)]
+tips <- tibble(id = tip_names, branch_length = terminal_branch_lengths)
+
+# add to main tibble
+tax <- left_join(tax, tips, by = "id")
+```
+
+Now we can plot it out...
+
+```{r}
+ggplot(tax, aes(x = proportion_gaps, y = branch_length)) +
+    geom_boxplot(aes(group = proportion_gaps), size = 0.1, alpha = 0.1) +
+    geom_point(data = filter(tax, id %in% treeshrink), 1, colour = 'red')
+```
+
+![](bl_plot.png)
+
+We can see that the treeshrink taxa all have a lot of gaps, and a mild but not alarming tendency for more gaps to be associated with longer branch lengths.
+
 ## Subset taxa
 
 
@@ -291,12 +320,11 @@ subset = tax %>%
 Now we can remove the treeshrink taxa
 
 ```{r}
-
 subset = subset %>% 
-            filter(~id %in% treeshrink)
+            filter(!id %in% treeshrink)
 ```
 
-Actually this didn't remove any more taxa - they were already removed based on gaps.
+Actually this didn't remove any more taxa - they were already removed based on gaps, as expected from the plot above.
 
 Now let's see what we've got:
 
@@ -641,11 +669,11 @@ iqtree2 -T 100 -p loci/training_loci -m MFP -cmax 8 -te $analysis.tree -pre 02_f
 grep '^ *[^ ]\+:' 02_fullcon/iteration_1.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr > 02_fullcon/models.txt
 
 echo "List of models best fit to training loci: " >> log.txt
-cat modelst.txt >> log.txt
+cat 02_fullcon/models.txt >> log.txt
 
 # now we get the init model as the first model in that list
 
-initial_model=$(awk 'NR==1 {print $2}' models.txt)
+initial_model=$(awk 'NR==1 {print $2}' 02_fullcon/models.txt)
 echo "Initial Model will be set to" >> log.txt
 echo $initial_model >> log.txt
 
@@ -654,4 +682,5 @@ echo $initial_model >> log.txt
 echo "Estimating Q matrix with IQ-TREE2" >> log.txt
 
 iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -te 02_fullcon/iteration_1.treefile --init-model $initial_model --model-joint GTR20+FO -pre 02_fullcon/iteration_1.GTR20
+
 ```
