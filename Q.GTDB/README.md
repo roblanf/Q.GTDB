@@ -474,19 +474,51 @@ mkdir 02_fullcon # first make the output directory
 iqtree2 -T 100 -p loci/training_loci -m MFP -cmax 8 -te phylum_1.tree -pre 02_fullcon/iteration_1
 ```
 
-#### 6. Set the best models
+The most important output from this is the file `iteration_1.best_scheme.nex`, which has the best model for each locus in it. 
 
-We can save a huge amount of time estimating the Q matrix by choosing a smaller set of models, so let's do that here.
+If you scroll through it, you'll see them like this:
 
+```
+  charpartition mymodels =
+    LG+F+I+R7: gtdb_r207_bac120_PF00466.21.faa,
+    Q.pfam+R6: gtdb_r207_bac120_PF02576.18.faa,
+    LG+F+I+R8: gtdb_r207_bac120_TIGR00006.faa,
+    LG+F+I+R8: gtdb_r207_bac120_TIGR00019.faa,
+    LG+I+R8: gtdb_r207_bac120_TIGR00020.faa,
+    rtREV+F+I+R6: gtdb_r207_bac120_TIGR00029.faa,
+    LG+F+I+R8: gtdb_r207_bac120_TIGR00054.faa,
+    Q.pfam+R8: gtdb_r207_bac120_TIGR00059.faa,
+    LG+R6: gtdb_r207_bac120_TIGR00061.faa,
+...
+```
+
+Let's check the models from that analysis:
+
+We can do this with grep and awk...
+
+```{bash}
+grep '^ *[^ ]\+:' 02_fullcon/iteration_1.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr
+```
+
+This gives us:
+
+```
+     61 LG
+     24 Q.pfam
+      7 Q.yeast
+      6 Q.insect
+      1 WAG
+      1 rtREV
+```
+
+Importantly, this tells us that we should use the LG model as the initial model for our analysis, since it's the best fit in 61% of the loci. This means that starting with LG model parameters is likely to be our best bet at getting an even better model.
 
 #### 7. Estimate the Q matrix
 
 Now we estimate the first iteration fo the matrix
 
 ```{bash}
-models="Q.pfam,Q.insect,Q.bird"
-
-iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -te 02_fullcon/iteration_1.treefile --init-model LG --model-joint GTR20+FO -pre 02_fullcon/iteration_1.GTR20"
+iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -te 02_fullcon/iteration_1.treefile --init-model LG --model-joint GTR20+FO -pre 02_fullcon/iteration_1.GTR20
 ```
 
 
