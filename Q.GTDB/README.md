@@ -368,7 +368,7 @@ We can also do one random genome per class, like so:
 
 
 ```{r}
-sample_phylum_id <- function(data) {
+sample_class_id <- function(data) {
   data %>%
     group_by(class) %>%
     sample_n(1) %>%
@@ -390,7 +390,7 @@ common_1_3 <- length(intersect(class_1, class_3))
 common_2_3 <- length(intersect(class_2, class_3))
 ```
 
-They have 38, 41, and 44 IDs in common, respectively, so the majority (about 100) of the IDs are different between each pair. This is good. If we get very similar matrices with these three lists, that will indicate that the details of the taxon selection didn't matter much.
+They have ~120 IDs in common, respectively, so the majority (about 200) of the IDs are different between each pair. This is good. 
 
 Let's write out these lists for future usage...
 
@@ -403,30 +403,27 @@ writeLines(class_3, "class_3.txt")
 
 ## Estimate Q Matrices
 
-### For the phylum-level lists
+Now we estimate a model for each of the taxon lists.
 
-#### Q.phylum_1
+I'll walk through the first one in great detail. The rest are just bash scripts based on the first one!
 
-0. Make a folder
+### Q.phylum_1
+
+#### 1. Make a folder and cd to it
 
 ```{bash}
 mkdir phylum_1
 cd phylum_1
+cp ../phylum_1.txt .
 ```
 
-1. Make the taxon list
-
-```{r}
-writeLines(phylum_1, "phylum_1.txt")
-```
-
-2. Get the subtree
+#### 2. Get the subtree
 
 ```{bash}
 ../scripts/get_subtree.py r207_original_clean.tree phylum_1.txt 
 ```
 
-3. just get the taxa we want from the loci
+#### 3. just get the taxa we want from the loci
 
 ```{bash}
 mkdir -p loci
@@ -439,7 +436,9 @@ done
 rm loci/gtdb_r207_bac120_full.faa 
 ```
 
-4. Split the loci between training and testing
+#### 4. Split the loci between training and testing
+
+Here we choose at random 20 loci for testsing, which leaves 100 for training.
 
 ```{bash}
 cd loci
@@ -453,7 +452,7 @@ mv *.faa training_loci
 cd ..
 ```
 
-5. Estimate the models
+#### 5. Estimate the models
 
 Now we look through all models and estimate the best model for each locus, using the original r207 sub-tree as our tree.
 
@@ -475,17 +474,19 @@ mkdir 02_fullcon # first make the output directory
 iqtree2 -T 100 -p loci/training_loci -m MFP -cmax 8 -te phylum_1.tree -pre 02_fullcon/iteration_1
 ```
 
-6. Set the best models
+#### 6. Set the best models
+
+We can save a huge amount of time estimating the Q matrix by choosing a smaller set of models, so let's do that here.
 
 
+#### 7. Estimate the Q matrix
 
-7. Estimate the Q matrix
-
-First we estimate the initial and branch lengths, then we estimate the matrix itself
+Now we estimate the first iteration fo the matrix
 
 ```{bash}
 models="Q.pfam,Q.insect,Q.bird"
 
 iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -te 02_fullcon/iteration_1.treefile --init-model LG --model-joint GTR20+FO -pre 02_fullcon/iteration_1.GTR20"
 ```
+
 
