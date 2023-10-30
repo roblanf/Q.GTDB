@@ -401,6 +401,46 @@ writeLines(class_3, "class_3.txt")
 ```
 
 
+
+### One random genome per order
+
+We can also do one random genome per order, like so:
+
+
+```{r}
+sample_order_id <- function(data) {
+  data %>%
+    group_by(order) %>%
+    sample_n(1) %>%
+    ungroup() %>%
+    pull(id)
+}
+
+order_1 <- sample_order_id(subset)
+order_2 <- sample_order_id(subset)
+order_3 <- sample_order_id(subset)
+
+```
+
+Then lets see how different these are:
+
+```{r}
+common_1_2 <- length(intersect(order_1, order_2))
+common_1_3 <- length(intersect(order_1, order_3))
+common_2_3 <- length(intersect(order_2, order_3))
+```
+
+They have ~120 IDs in common, respectively, so the majority (about 200) of the IDs are different between each pair. This is good. 
+
+Let's write out these lists for future usage...
+
+```
+writeLines(order_1, "order_1.txt")
+writeLines(order_2, "order_2.txt")
+writeLines(order_3, "order_3.txt")
+```
+
+
 ## Estimate Q Matrices
 
 Now we estimate a model for each of the taxon lists.
