@@ -354,7 +354,51 @@ common_2_3 <- length(intersect(phylum_2, phylum_3))
 
 They have 38, 41, and 44 IDs in common, respectively, so the majority (about 100) of the IDs are different between each pair. This is good. If we get very similar matrices with these three lists, that will indicate that the details of the taxon selection didn't matter much.
 
+Let's write out these lists for future usage...
+
+```
+writeLines(phylum_1, "phylum_1.txt")
+writeLines(phylum_2, "phylum_2.txt")
+writeLines(phylum_3, "phylum_3.txt")
+```
+
 ### One random genome per class
+
+We can also do one random genome per class, like so:
+
+
+```{r}
+sample_phylum_id <- function(data) {
+  data %>%
+    group_by(class) %>%
+    sample_n(1) %>%
+    ungroup() %>%
+    pull(id)
+}
+
+class_1 <- sample_class_id(subset)
+class_2 <- sample_class_id(subset)
+class_3 <- sample_class_id(subset)
+
+```
+
+Then lets see how different these are:
+
+```{r}
+common_1_2 <- length(intersect(class_1, class_2))
+common_1_3 <- length(intersect(class_1, class_3))
+common_2_3 <- length(intersect(class_2, class_3))
+```
+
+They have 38, 41, and 44 IDs in common, respectively, so the majority (about 100) of the IDs are different between each pair. This is good. If we get very similar matrices with these three lists, that will indicate that the details of the taxon selection didn't matter much.
+
+Let's write out these lists for future usage...
+
+```
+writeLines(class_1, "class_1.txt")
+writeLines(class_2, "class_2.txt")
+writeLines(class_3, "class_3.txt")
+```
 
 
 ## Estimate Q Matrices
