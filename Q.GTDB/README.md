@@ -711,10 +711,19 @@ iqtree2 -T 100 -s loci/training_loci -m MFP -cmax 8 -mset LG -mrate G -m LG+G -t
 iqtree2 -T 100 -s loci/training_loci -te 02_fullcon/iteration_1.treefile --init-model LG --model-joint GTR20+FO -pre 02_fullcon_onemod/iteration_1.GTR20
 ```
 
+This means that we clearly need an approach that samples differently. Likely the problem here is that the samples are too sparse, so the obvious thing is to sample more densely if we can.
+
+
+I want to try again with the same phylum dataset, this time bearing in mind the limitation of the end usage. The end usage here is FastTree, which does not cope with partitioned models. Instead, it fits a gamma rate distribution and assumes one model for the whole dataset. We can also try that when estimating the rate matrix, in other words, we constrain all the other parameters so that they match the constraints of the final analysis. Let's see if it makes a difference.
+
+tbc...
+
 ### Q.class_1
 
 Let's do the same for the class_1.txt list, but this time with a single bash script...
 
+
+#### Estimating it
 
 I'll write a very very simple log file as I go, so I can see if things go wrong.
 
@@ -805,13 +814,95 @@ iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -
 
 ```
 
+The final step is the longest, and took ~46 hours, which is not too bad. Now to test it. 
+
+#### Testing it
+
+Let's write another simple bash script for testing...
+
+
+```{bash}
+analysis="class_1"
+
+cd $analysis
+
+# extract the matrix
+new_model="Q.bacteria_"$analysis
+echo "" >> log.txt
+echo "## Model Testing ##" >> log.txt
+echo "Extracting model and saving to "$new_model >> log.txt
+
+grep -A 21 "can be used as input for IQ-TREE" 02_fullcon/iteration_1.GTR20.iqtree | tail -n20 > $new_model
+
+cat $new_model >> log.txt
+
+# test it on test loci
+echo ""
+echo "Testing model on test loci..." >> log.txt
+echo "Frequency table of best-fit models" >> log.txt
+mkdir 03_testing
+iqtree2 -T 20 -S loci/testing_loci/ -m MF -mset LG,Q.pfam,Q.insect,Q.yeast,$new_model -pre 03_testing/test_loci_mf
+grep '^ *[^ ]\+:' 03_testing/test_loci_mf.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr >> log.txt
+
+# test it on the full and the reduced datasets
+# we don't need to do LG since we did that for phylum_1...
+
+# small alignment
+raxml-ng --msa ../alignments/gtdb_r207_bac120_concatenated.faa --model PROTGTR{$new_model}+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1  --prefix 03_testing/$new_model"_G_reduced_aln"
+
+# big alignment
+raxml-ng --msa ../alignments/gtdb_r207_bac120_full.faa --model PROTGTR{$new_model}+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1  --prefix 03_testing/$new_model"_G_full_aln"
+
+# finally we make a little table of the likelihoods etc. for the analyses, and compare it to LG
+
+# Specify your list of filenames
+f1=$new_model"_G_reduced_aln.raxml.log"
+f2="../../phylum_1/03_testing/LGG_full.raxml.log"
+f3=$new_model"_G_full_aln.raxml.log"
+f4="../../phylum_1/03_testing/LGG_full.raxml.log"
+declare -a filenames=($f1 $f2 $f3 $f4)
+
+cd 03_testing
+
+# Create a new file to store the table
+log_file="log_table.txt"
+
+# Print the header of the table
+echo -e "Likelihood\tAIC\tTime\tFilename" > "$log_file"
+
+# Loop through each specified file
+for file in "${filenames[@]}"; do
+    # Check if the file exists
+    if [[ -f "$file" ]]; then
+        # Extract the required values using grep and awk
+        likelihood=$(grep 'Final LogLikelihood' "$file" | awk '{print $3}')
+        aic=$(grep 'AIC score' "$file" | awk '{print $3}')
+        time=$(grep 'Elapsed time' "$file" | awk '{print $3}')
+        filename=$(basename "$file")
+
+        # Append the extracted values to the log file
+        echo -e "$likelihood\t$aic\t$time\t$filename" >> "$log_file"
+    else
+        echo "The file $file does not exist." >> "$log_file"
+    fi
+done
+
+# Display the table
+cat "$log_file"
+
+cd ..
+
+cat 03_testing/$log_file >> log.txt
+
+```
+
 
 ### Q.order_1
 
 Now let's start a matrix running which is estimated by order. To do this, I'll save the above as a bash script called `order_1.sh`, change the first line to
 
 ```{bash}
-analysis="class_1"
+analysis="order_1"
 ```
 
 These alignments are big, and estimating models will be very expensive (particularly free rate models).
@@ -832,3 +923,9 @@ Now I can just set it running with
 ```{bash}
 bash order_1.sh
 ```
+
+
+
+
+
+
