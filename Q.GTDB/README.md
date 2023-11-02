@@ -700,6 +700,17 @@ Likelihood      AIC     Time    Filename
 
 Which is bad news - it shows us that the new matrix fits worse than LG on both the full matrix AND the reduced matrix!
 
+### Q.phylum_1_onemod
+
+What if we try without partitions?
+
+
+```
+iqtree2 -T 100 -s loci/training_loci -m MFP -cmax 8 -mset LG -mrate G -m LG+G -te phylum_1.tree -pre 02_fullcon_onemod/iteration_1
+
+iqtree2 -T 100 -s loci/training_loci -te 02_fullcon/iteration_1.treefile --init-model LG --model-joint GTR20+FO -pre 02_fullcon_onemod/iteration_1.GTR20
+```
+
 ### Q.class_1
 
 Let's do the same for the class_1.txt list, but this time with a single bash script...
