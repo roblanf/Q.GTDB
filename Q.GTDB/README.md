@@ -592,6 +592,113 @@ iqtree2 -T 100 -S loci/training_loci -p 02_fullcon/iteration_1.best_scheme.nex -
 Once this is done we can do more iterations...
 
 
+#### 8. Extract the Q matrix
+
+Let's get it out and store it away...
+
+```{bash}
+grep -A 21 "can be used as input for IQ-TREE" 02_fullcon/iteration_1.GTR20.iqtree | tail -n20 > Q.bacteria_phylum_1
+```
+
+#### 9. Test the new model on the test loci.
+
+Now we want to know how many test loci are best fit by this model. Here I use 20 threads because I only have 20 test loci, and that keeps IQ-TREE efficient. 
+
+The general rule is have no more threads than loci.
+
+Here we run IQ-TREE on the test loci, then summarise the output. What we *want* to see if things worked is that our new matrix is the best for a lot of the test loci!
+
+```{bash}
+mkdir 03_testing
+iqtree2 -T 20 -S loci/testing_loci/ -m MF -mset LG,Q.pfam,Q.insect,Q.yeast,Q.bacteria_phylum_1 -pre 03_testing/test_loci_mf
+grep '^ *[^ ]\+:' 03_testing/test_loci_mf.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr
+```
+
+This gives:
+
+```{bash}
+     19 Q.bacteria_phylum_1
+      1 Q.yeast
+```
+
+This means it worked! The new model is a better fit to the test loci than the old one. And remember, the new model has *never* seen the test loci before, so it's a legitimate test.
+
+
+
+#### 10. Test the new model on the whole dataset
+
+Perhaps more importantly, we want to know if the new model fits the BIG tree better. Let's try that too.
+
+Previous analyses (https://github.com/fredjaya/gtdb_trees/tree/a0d9ce0702487d5ecceb228e36efb208bc6182f9/v0.1.0_analyses/initial_tree_analyses) suggest that we can use raxml-ng for this quite effectively.
+
+We'll try two good rate distributions - +G, and +R4 (there are practically no invariant columns in this data, so I ignore +I models; in addition, the end goal is to work with FastTree which has no +I option). We'll do this on two alignments: the reduced alignment that GTDB use, and the full alignment that they'd like to use but don't yet.
+
+```{bash}
+
+# QBp1 stands for Q.bacteria_phylum_1
+# small alignment
+raxml-ng --msa ../alignments/gtdb_r207_bac120_concatenated.faa --model PROTGTR{Q.bacteria_phylum_1}+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1  --prefix 03_testing/QBp1G
+
+raxml-ng --msa ../alignments/gtdb_r207_bac120_concatenated.faa --model LG+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1  --prefix 03_testing/LG
+
+# big alignment
+raxml-ng --msa ../alignments/gtdb_r207_bac120_full.faa --model PROTGTR{Q.bacteria_phylum_1}+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1  --prefix 03_testing/QBp1G_full
+
+raxml-ng --msa ../alignments/gtdb_r207_bac120_full.faa --model LG+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1  --prefix 03_testing/LGG_full
+
+```
+
+Now we want to extract the relevant info from these analyses: likelihoods, AICs, execution times.
+
+```{bash}
+# Specify your list of filenames
+declare -a filenames=("QBp1G_full.raxml.log" "LGG_full.raxml.log" "QBp1G.raxml.log" "LGG.raxml.log")
+
+cd 03_testing
+
+# Create a new file to store the table
+log_file="log_table.txt"
+
+# Print the header of the table
+echo -e "Likelihood\tAIC\tTime\tFilename" > "$log_file"
+
+# Loop through each specified file
+for file in "${filenames[@]}"; do
+    # Check if the file exists
+    if [[ -f "$file" ]]; then
+        # Extract the required values using grep and awk
+        likelihood=$(grep 'Final LogLikelihood' "$file" | awk '{print $3}')
+        aic=$(grep 'AIC score' "$file" | awk '{print $3}')
+        time=$(grep 'Elapsed time' "$file" | awk '{print $3}')
+        filename=$(basename "$file")
+
+        # Append the extracted values to the log file
+        echo -e "$likelihood\t$aic\t$time\t$filename" >> "$log_file"
+    else
+        echo "The file $file does not exist." >> "$log_file"
+    fi
+done
+
+# Display the table
+cat "$log_file"
+
+cd ..
+
+cat 03_testing/$log_file >> log.txt
+```
+
+This gives us:
+
+```{bash}
+Likelihood      AIC     Time    Filename
+-1088000564.208966      2176250288.417933       17965.016       QBp1G_full.raxml.log
+-1081479614.701307      2163208389.402613       20892.610       LGG_full.raxml.log
+-131190357.878285       262629875.756571        1866.073        QBp1G.raxml.log
+-130592049.145638       261433258.291277        3785.556        LGG.raxml.log
+```
+
+
+Which is bad news - it shows us that the new matrix fits worse than LG on both the full matrix AND the reduced matrix!
 
 ### Q.class_1
 
