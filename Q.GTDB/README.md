@@ -469,7 +469,7 @@ writeLines(order_3, "order_3.txt")
 ```
 
 
-## Estimate Q Matrices
+## Estimate Q Matrices with one random genome
 
 Now we estimate a model for each of the taxon lists.
 
@@ -857,7 +857,7 @@ raxml-ng --msa ../alignments/gtdb_r207_bac120_full.faa --model PROTGTR{$new_mode
 
 # Specify your list of filenames
 f1=$new_model"_G_reduced_aln.raxml.log"
-f2="../../phylum_1/03_testing/LGG_full.raxml.log"
+f2="../../phylum_1/03_testing/LGG.raxml.log"
 f3=$new_model"_G_full_aln.raxml.log"
 f4="../../phylum_1/03_testing/LGG_full.raxml.log"
 declare -a filenames=($f1 $f2 $f3 $f4)
@@ -897,6 +897,20 @@ cat 03_testing/$log_file >> log.txt
 ```
 
 
+The results for this show that this matrix doesn't work either (though it's still better than the phylum level matrix)
+
+Combining the results tables...
+
+```
+Likelihood      AIC     Time    Filename
+-131190357.878285       262629875.756571        1866.073        QBp1G.raxml.log
+-131099420.890135       262448001.780271        1442.474        Q.bacteria_class_1_G_reduced_aln.raxml.log
+-130592049.145638       261433258.291277        3785.556        LGG.raxml.log
+-1088000564.208966      2176250288.417933       17965.016       QBp1G_full.raxml.log
+-1086808724.440440      2173866608.880880       12427.577       Q.bacteria_class_1_G_full_aln.raxml.log
+-1081479614.701307      2163208389.402613       20892.610       LGG_full.raxml.log
+```
+
 ### Q.order_1
 
 Now let's start a matrix running which is estimated by order. To do this, I'll save the above as a bash script called `order_1.sh`, change the first line to
@@ -924,8 +938,337 @@ Now I can just set it running with
 bash order_1.sh
 ```
 
+And now we can test it with the testing script above after changing the first line to:
+
+```{bash}
+analysis="order_1"
+```
+
+### Q.family_1
+
+Can we estimate a matrix with one genome per family? In the subset dataset there are 2570, which is about 2.5x bigger than the order level dataset. One way to guess how long this will take is to look at the previous runs sizes and execution times.
+
+```{r}
+times <- tibble(
+  matrix = c("Q.order_1", "Q.class_1", "Q.phylum_1"),
+  time_hrs = c(87, 46, 16),
+  taxa = c(1090, 343, 140)
+)
+```
+Encouragingly, this is sub-linear. So we can guesstimate that the family level matrix will take 2.5x 87hrs, which is ~220 hrs or 10 days. 
+
+Let's try. 
+
+```{r}
+family_1 <- subset %>%
+    group_by(family) %>%
+    sample_n(1) %>%
+    ungroup() %>%
+    pull(id)
+writeLines(family_1, "family_1.txt")
+
+```
+
+
+
+### Q.genus_1
+
+Let's also try one per genus, just for fun
+
+
+```{r}
+genus_1 <- subset %>%
+    group_by(genus) %>%
+    sample_n(1) %>%
+    ungroup() %>%
+    pull(id)
+writeLines(genus_1, "genus_1.txt")
+```
+
+## Q.GTDB_sub: Estimate Q Matrices from subtrees
+
+### Splitting into subtrees
+
+The matrices above eventually worked, but I suspect we can do more. 
+
+We can try to include many more of the branches near the tips, by splitting the input tree into a series of subtrees, where each subtree is some maximum size. There's a tradeoff here, because we will lose taxa on trees with <4 species. However, it's an empirical question as to how much that matters, and the first challenge is to be able to split the input tree into subtrees at all. 
+
+
+Let's start with an algorithm to split the big tree into smaller ones:
+
+```{r}
+library(castor)
+
+split_tree <- function(tree, Nmax = 1000, Nmin = 4){
+  
+  to_split = list(tree)
+  to_keep = list() # we'll put trees to keep here
+  
+  # we don't need to do anything if the input tree is already small enough  
+  if(Ntip(tree)<=N){
+    return(c(tree))
+  }
+  
+  while(length(to_split)>0){
+    
+    cat("to split: ", length(to_split), "    to keep: ", length(to_keep), "\n")
+    
+    # poor man's pop: get the first element and delete it
+    t = to_split[[1]]
+    to_split[[1]] <- NULL
+    
+    # split the tree (this is effectively just splitting it at the root node of the tree)
+    splits <- split_tree_at_height(t, 0.00000000000000000000000000000001)
+    # extract the subtrees from the castor object
+    subtrees = sapply(splits$subtrees, function(x) x$tree, simplify = FALSE)
+    
+    for(subtree in subtrees){
+      
+      if( Ntip(subtree) > Nmax ){ # split it again...
+        to_split[[length(to_split) + 1]] <- subtree
+      } else if ( Ntip(subtree) > (Nmin - 1)){ # it's between 4 and N, which is what we want
+        to_keep[[length(to_keep) + 1]] <- subtree
+      } 
+      # otherwise we ditch the tree because it has <=3 tips
+    }
+  }
+  
+  class(to_keep) <- 'multiPhylo'
+  return(to_keep)
+}
+```
+
+This works up from the root, and keep splitting subtrees when they are bigger than the maximum value. It keeps any subtree which is smaller than the maximum value but at least as big as the minimum.
+
+For example, we can run it on the big tree like so:
+
+```{r}
+tree <- read.tree(r207_original_clean.tree)
+subtrees <- split_tree(tree, 100, 20)
+```
+
+This gives 970 trees, which have quite a uniform distribution of sizes from 20 to 100
+Remarkably, they include 55517 of the 62291 taxa, or about 90%. The tree lengths are also sensible:
+
+```
+tree_lengths <- sapply(subtrees, function(tree) sum(tree$edge.length))
+#> summary(tree_lengths)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.1692  2.3551  4.4316  5.9376  7.8711 40.0413 
+```
+
+A challenge here is that we now have 970 subtrees (a little bit less when we use the filtered dataset). Since we have 120 genes, that means we have of the order of 100,000 alignments. That's a lot! The smart thing to do here is probably to treat this as its own empirical problem. How many do we need to estimate a good matrix? 
+
+One approach is to first make the 100K alignments, and then to try various training set sizes and look at the characteristics of the resulting matrix.
+
+Let's go!
+
+### Creating the sub-alignments and sub-trees
+
+First we get the subtrees only from the subset of taxa we actually care about (recall above that we removed taxa with a lot of gaps, and those on long branches).
+
+```{r}
+tree <- read.tree("r207_original_clean.tree")
+
+to_keep = subset$id
+
+subtree = get_subtree_with_tips(tree, only_tips = to_keep)$subtree
+
+```
+
+No we subdivide that subtree into trees of 20-100 taxa.
+
+```{r}
+subtrees <- split_tree(subtree, 100, 20)
+```
+
+Check the distributions
+
+```{r}
+tree_lengths <- sapply(subtrees, function(tree) max(tree$edge.length))
+tips <- sapply(subtrees, function(tree) Ntip(tree))
+summary(tree_lengths)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#0.00752 0.11794 0.20503 0.24104 0.31827 0.85776 
+summary(tips)
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#  20.00   34.00   53.00   56.35   79.00  100.00 
+```
+
+The trees contain a total of 37921 tips. That's 90% of the input tree, or 60% of the original dataset. 
+
+Now let's export those trees, and their taxon lists.
+
+```{bash}
+mkdir Q.GTDB_sub
+```
+
+```{r}
+write_trees_and_taxa <- function(multiphylo_trees, folder_path) {
+  for (i in seq_along(multiphylo_trees)) {
+    # Format the file names with leading zeros
+    tree_file_name <- sprintf("%03d.tree", i)
+    taxa_file_name <- sprintf("%03d.txt", i)
+    
+    # Write the tree to file
+    write.tree(multiphylo_trees[[i]], file.path(folder_path, tree_file_name))
+    
+    # Write the taxon list to file
+    taxa <- multiphylo_trees[[i]]$tip.label
+    writeLines(taxa, con = file.path(folder_path, taxa_file_name))
+  }
+}
+
+# Usage: replace "path/to/folder" with the desired folder path
+write_trees_and_taxa(subtrees, "Q.GTDB_sub")
+```
+
+### Building the Q matrix
+
+THe script for building the Q matrix will be quite different in places. Here it is
+
+```{bash}
+analysis="Q.GTDB_sub"
+
+echo "Setting up analysis for "$analysis > log.txt
+
+# 3. just get the taxa we want from the loci
+
+echo "Subsetting alignments" >> log.txt
+
+mkdir -p loci
+for taxon_list in taxon_lists/*.txt; do
+  
+    base_name=$(basename "$taxon_list" .txt)
+  
+    for loc in ../alignments/*.faa; do
+        filename=$(basename $loc)
+        new_filename="${base_name}_${filename}"
+
+        faSomeRecords $loc $taxon_list loci/${new_filename}
+        
+    done
+done
+
+echo "" >> log.txt
+echo "Sub-alignments created for each gene and taxon list." >> log.txt
+alignment_count=$(find loci/ -name "*.faa" | wc -l)
+echo "A total of $alignment_count alignments were created." >> log.txt
+```
+
+Next we'll determine 1000 testing loci, and then we'll start with 1000 training loci. I'll make a series of training folders, so that I can train a number of matrices using different sized training datasets.
+
+```{bash}
+# 4. Split the loci between training and testing
+
+echo "splitting alignments into testing and training" >> log.txt
+
+
+test_set=$(ls loci | sort -R | tail -1000)
+
+echo "Test alignments: " >> log.txt
+echo $test_set >> log.txt
+mkdir -p testing_loci
+for file in $test_set; do
+    mv "loci/$file" testing_loci/
+done
+
+# now we need to de-duplicate the remaining loci. No training comes from duplicates...
+# we then remove any files with <10 sequences
+mkdir loci_deduped
+for file in loci/*; do
+    echo $file
+    fname=$(basename $file)
+    echo $fname
+    seqkit rmdup --by-seq -o loci_deduped/$fname $file
+    nseq=$(grep -c '>' loci_deduped/$fname)  # -c will count the number of matches
+    echo "$nseq sequences left"
+    if [ "$nseq" -lt 10 ]; then
+        rm loci_deduped/$fname
+    fi    
+done
+
+
+
+mkdir -p training_loci_1k
+mkdir -p training_loci_5k
+mkdir -p training_loci_10k
+mkdir -p training_loci_50k
+training_set1k=$(ls loci_deduped | sort -R | tail -1000)
+training_set5k=$(ls loci_deduped | sort -R | tail -5000)
+training_set10k=$(ls loci_deduped | sort -R | tail -10000)
+training_set50k=$(ls loci_deduped | sort -R | tail -50000)
+
+for file in $training_set1k; do 
+    cp "loci_deduped/$file" training_loci_1k/
+done
+
+for file in $training_set5k; do 
+    cp "loci_deduped/$file" training_loci_5k/
+done
+
+for file in $training_set10k; do 
+    cp "loci_deduped/$file" training_loci_10k/
+done
+
+for file in $training_set50k; do 
+    cp "loci_deduped/$file" training_loci_50k/
+done
 
 
 
 
+# check! 
 
+echo "" >> log.txt
+echo "Number of testing loci : " >> log.txt
+ls testing_loci/ | wc -l >> log.txt
+
+echo "" >> log.txt
+echo "Number of training loci : " >> log.txt
+alignment_count=$(find loci/ -name "*.faa" | wc -l)
+
+n1k=$(find training_loci_1k/ -name "*.faa" | wc -l)
+n5k=$(find training_loci_5k/ -name "*.faa" | wc -l)
+n10k=$(find training_loci_10k/ -name "*.faa" | wc -l)
+n50k=$(find training_loci_50k/ -name "*.faa" | wc -l)
+echo "training_loci_1k: $n1k" >> log.txt
+echo "training_loci_5k: $n5k" >> log.txt
+echo "training_loci_10k: $n10k" >> log.txt
+echo "training_loci_50k: $n50k" >> log.txt
+
+
+```
+
+Now we estimate the models, but we need to do this once for every training dataset...
+
+```{bash}
+analysis="Q.GTDB_sub"
+training="training_loci_1k"
+
+# 5. Estimate the models
+
+echo "Estimating initial models with IQ-TREE2 for $training" >> log.txt
+
+mkdir 02_fullcon_$training # first make the output directory
+model_set="LG,Q.pfam,Q.insect,Q.yeast"
+iqtree2 -T 100 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
+
+# get the list of models, and save it to models.txt
+grep '^ *[^ ]\+:' 02_fullcon_$training/iteration_1.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr > 02_fullcon_$training/models.txt
+
+echo "List of models best fit to training loci: " >> log.txt
+cat 02_fullcon_$training/models.txt >> log.txt
+
+# now we get the init model as the first model in that list
+
+initial_model=$(awk 'NR==1 {print $2}' 02_fullcon_$training/models.txt)
+echo "Initial Model will be set to" >> log.txt
+echo $initial_model >> log.txt
+
+# 7. Estimate the Q matrix
+
+echo "Estimating Q matrix with IQ-TREE2" >> log.txt
+
+iqtree2 -T 100 -S training_loci_1k -p 02_fullcon_$training/iteration_1.best_scheme.nex -te 02_fullcon_$training/iteration_1.treefile --init-model $initial_model --model-joint GTR20+FO -pre 02_fullcon_$training/iteration_1.GTR20
+```
