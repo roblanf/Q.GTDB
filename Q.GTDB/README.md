@@ -1175,44 +1175,54 @@ done
 
 # now we need to de-duplicate the remaining loci. No training comes from duplicates...
 # we then remove any files with <10 sequences
+# we also remove any sequences that are all gaps
+
 mkdir loci_deduped
+mkdir loci_clean
 for file in loci/*; do
-    echo $file
     fname=$(basename $file)
-    echo $fname
     seqkit rmdup --by-seq -o loci_deduped/$fname $file
-    nseq=$(grep -c '>' loci_deduped/$fname)  # -c will count the number of matches
+    seqkit grep -w 0 -svrp "^-+$" loci_deduped/$fname > loci_clean/$fname # remove sequences that are all gaps
+    nseq=$(grep -c '>' loci_clean/$fname)  # -c will count the number of matches
     echo "$nseq sequences left"
     if [ "$nseq" -lt 10 ]; then
-        rm loci_deduped/$fname
+        rm loci_clean/$fname
     fi    
 done
 
+# clean up!
+rm -rf loci_deduped
 
-
+mkdir -p training_loci_100 # for testing!
 mkdir -p training_loci_1k
 mkdir -p training_loci_5k
 mkdir -p training_loci_10k
 mkdir -p training_loci_50k
-training_set1k=$(ls loci_deduped | sort -R | tail -1000)
-training_set5k=$(ls loci_deduped | sort -R | tail -5000)
-training_set10k=$(ls loci_deduped | sort -R | tail -10000)
-training_set50k=$(ls loci_deduped | sort -R | tail -50000)
+training_set100=$(ls loci_clean | sort -R | tail -100)
+training_set1k=$(ls loci_clean | sort -R | tail -1000)
+training_set5k=$(ls loci_clean | sort -R | tail -5000)
+training_set10k=$(ls loci_clean | sort -R | tail -10000)
+training_set50k=$(ls loci_clean | sort -R | tail -50000)
+
+for file in $training_set100; do 
+    cp "loci_clean/$file" training_loci_100/
+done
+
 
 for file in $training_set1k; do 
-    cp "loci_deduped/$file" training_loci_1k/
+    cp "loci_clean/$file" training_loci_1k/
 done
 
 for file in $training_set5k; do 
-    cp "loci_deduped/$file" training_loci_5k/
+    cp "loci_clean/$file" training_loci_5k/
 done
 
 for file in $training_set10k; do 
-    cp "loci_deduped/$file" training_loci_10k/
+    cp "loci_clean/$file" training_loci_10k/
 done
 
 for file in $training_set50k; do 
-    cp "loci_deduped/$file" training_loci_50k/
+    cp "loci_clean/$file" training_loci_50k/
 done
 
 
@@ -1228,10 +1238,12 @@ echo "" >> log.txt
 echo "Number of training loci : " >> log.txt
 alignment_count=$(find loci/ -name "*.faa" | wc -l)
 
+n100=$(find training_loci_100/ -name "*.faa" | wc -l)
 n1k=$(find training_loci_1k/ -name "*.faa" | wc -l)
 n5k=$(find training_loci_5k/ -name "*.faa" | wc -l)
 n10k=$(find training_loci_10k/ -name "*.faa" | wc -l)
 n50k=$(find training_loci_50k/ -name "*.faa" | wc -l)
+echo "training_loci_100: $n100" >> log.txt
 echo "training_loci_1k: $n1k" >> log.txt
 echo "training_loci_5k: $n5k" >> log.txt
 echo "training_loci_10k: $n10k" >> log.txt
@@ -1244,7 +1256,7 @@ Now we estimate the models, but we need to do this once for every training datas
 
 ```{bash}
 analysis="Q.GTDB_sub"
-training="training_loci_1k"
+training="training_loci_100"
 
 # 5. Estimate the models
 
@@ -1252,7 +1264,7 @@ echo "Estimating initial models with IQ-TREE2 for $training" >> log.txt
 
 mkdir 02_fullcon_$training # first make the output directory
 model_set="LG,Q.pfam,Q.insect,Q.yeast"
-iqtree2 -T 100 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
+iqtree2 -T 200 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
 
 # get the list of models, and save it to models.txt
 grep '^ *[^ ]\+:' 02_fullcon_$training/iteration_1.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr > 02_fullcon_$training/models.txt
@@ -1270,5 +1282,5 @@ echo $initial_model >> log.txt
 
 echo "Estimating Q matrix with IQ-TREE2" >> log.txt
 
-iqtree2 -T 100 -S training_loci_1k -p 02_fullcon_$training/iteration_1.best_scheme.nex -te 02_fullcon_$training/iteration_1.treefile --init-model $initial_model --model-joint GTR20+FO -pre 02_fullcon_$training/iteration_1.GTR20
+iqtree2 -T 200 -S $training -p 02_fullcon_$training/iteration_1.best_scheme.nex -te 02_fullcon_$training/iteration_1.treefile --init-model $initial_model --model-joint GTR20+FO -pre 02_fullcon_$training/iteration_1.GTR20
 ```
