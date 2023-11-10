@@ -14,11 +14,15 @@ Within each alignment, models are ordered from worst to best.
 | Reduced   | Q.bacteria_class_1   | -131099420.890135   | 262448001.780271     | 1442.474  | Q.bacteria_class_1_G_reduced_aln.raxml.log |
 | Reduced   | LG                   | -130592049.145638   | 261433258.291277     | 3785.556  | LGG.raxml.log                              |
 | Reduced   | Q.bacteria_order_1   | -130587008.543687   | 261423177.087373     | 1382.725  | Q.bacteria_order_1_G_reduced_aln.raxml.log |
+| Reduced   | Q.GTDB_sub_1k        | -130190308.686682   | 260629777.373364     | 1921.265  | Q.GTDB_sub_1k_G_reduced_aln.raxml.log      |
 | Reduced   | Q.GTDB_sub_5k        | -130187129.127843   | 260623418.255687     | 1466.727  | Q.GTDB_sub_5k_G_reduced_aln.raxml.log      |
 | Full      | Q.bacteria_phylum_1  | -1088000564.208966  | 2176250288.417933    | 17965.016 | QBp1G_full.raxml.log                       |
 | Full      | Q.bacteria_class_1   | -1086808724.440440  | 2173866608.880880    | 12427.577 | Q.bacteria_class_1_G_full_aln.raxml.log    |
+| Full      | Q.insect             | -1083233269.103021  | 2166715698.206043    | 25808.033 | Q.insect_G_full.raxml.log                  |
 | Full      | Q.bacteria_order_1   | -1082202438.322814  | 2164654036.645627    | 11859.777 | Q.bacteria_order_1_G_full_aln.raxml.log    |
 | Full      | LG                   | -1081479614.701307  | 2163208389.402613    | 20892.610 | LGG_full.raxml.log                         |
+| Full      | Q.pfam               | -1080441362.693915  | 2161131885.387830    | 12178.108 | Q.pfam_G_full.raxml.log                   |
+| Full      | Q.GTDB_sub_1k        | -1079048060.530090  | 2158345281.060180    | 9662.451  | Q.GTDB_sub_1k_G_full_aln.raxml.log        |
 | Full      | Q.bactera_sub_5k     | -1078809634.619930  | 2157868429.239860    | 11799.372 | Q.GTDB_sub_5k_G_full_aln.raxml.log         |
 
 
@@ -734,6 +738,24 @@ Likelihood      AIC     Time    Filename
 
 Which is bad news - it shows us that the new matrix fits worse than LG on both the full matrix AND the reduced matrix!
 
+I'll also just fit the other common models for reference, Q.insect, Q.yeast, and Q.pfam
+
+```{bash}
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.insect+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.insect_G_full
+
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.yeast+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.yeast_G_full
+
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.pfam+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.pfam_G_full
+
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.insect+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.insect_G_full
+
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.yeast+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.yeast_G_full
+
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.pfam+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.pfam_G_full
+
+```
+
+
 ### Q.phylum_1_onemod
 
 What if we try without partitions?
@@ -1042,7 +1064,7 @@ split_tree <- function(tree, Nmax = 1000, Nmin = 4){
   to_keep = list() # we'll put trees to keep here
   
   # we don't need to do anything if the input tree is already small enough  
-  if(Ntip(tree)<=N){
+  if(Ntip(tree)<=Nmax){
     return(c(tree))
   }
   
@@ -1300,3 +1322,77 @@ This analysis is laid out in `Q.GTDB_sub_5k.sh`
 The 5k model works well, but maybe we can get away with a lot fewer training alignments, let's see. If so, it will make future directions a bit easier. For example, it may be possible to improve the matrix further by increasing the maximum size of the tree for each training locus. This will incur a lot of extra analysis time though, so it's worth looking at how much we really need to 5k loci.
 
 This analysis is laid out in `Q.GTDB_sub_1k.sh`
+
+
+
+
+## Q.GTDB_sub250: Estimate Q Matrices from subtrees of up to 250 taxa
+
+The previous analysis split the big tree into trees of up to 100 taxa, and removed gappy taxa first. 
+
+This analysis will be very similar, except that it will split into larger subtrees of up to 250 taxa, and we don't need to remove gappy taxa first, since how gappy a taxon is across the whole dataset doesn't actually matter much. 
+
+### Creating the sub-alignments and sub-trees
+
+We follow the same approach as above, except we don't remove all the gappy taxa this time. We only remove the treeshrink taxa
+
+```{r}
+tree <- read.tree("r207_original_clean.tree")
+
+subset250 = tax %>% 
+            filter(!id %in% treeshrink)
+
+to_keep = subset250$id
+
+subtree = get_subtree_with_tips(tree, only_tips = to_keep)$subtree
+
+subtrees <- split_tree(subtree, 250, 20)
+```
+
+Check the distributions
+
+```{r}
+tree_lengths <- sapply(subtrees, function(tree) max(tree$edge.length))
+tips <- sapply(subtrees, function(tree) Ntip(tree))
+summary(tree_lengths)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.01233 0.16783 0.26804 0.30852 0.40595 1.01401 
+summary(tips)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     20      46      93     113     178     250 
+```
+
+The trees contain a total of 60028 tips. That's 96% of the input tree and the original dataset (since we only removed a few treeshrink taxa from the original this time) 
+
+Now let's export those trees, and their taxon lists.
+
+```{bash}
+mkdir Q.GTDB_sub250
+mkdir Q.GTDB_sub250/subtrees
+mkdir Q.GTDB_sub250/taxon_lists
+```
+
+I slightly edited the write_trees_and_taxa function for this:
+
+```{r}
+write_trees_and_taxa <- function(multiphylo_trees, folder_path) {
+  for (i in seq_along(multiphylo_trees)) {
+    # Format the file names with leading zeros
+    tree_file_name <- sprintf("%03d.tree", i)
+    taxa_file_name <- sprintf("%03d.txt", i)
+    
+    # Write the tree to file
+    write.tree(multiphylo_trees[[i]], file.path(folder_path, "subtrees", tree_file_name))
+    
+    # Write the taxon list to file
+    taxa <- multiphylo_trees[[i]]$tip.label
+    writeLines(taxa, con = file.path(folder_path, "taxon_lists", taxa_file_name))
+  }
+}
+
+write_trees_and_taxa(subtrees, "Q.GTDB_sub250")
+```
+
+Next we create the alignments, as above. Based on the previous analysis, I just build datasets for 1K, 5K, and 10K loci here.
+
+I wrote this into a script called `setup_alignments.sh`, based on the bash code for doing this above.
