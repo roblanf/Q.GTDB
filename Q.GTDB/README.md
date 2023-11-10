@@ -4,18 +4,32 @@
 
 I've estimated a lot of models below. The main question is how they perform on the full GTDB dataset, and here's a table for that...
 
+All of these are fit with a +G rate model, not because I think that's best, but because that's all we have in FastTree, so that's the relevant comparison.
+
+Within each alignment, models are ordered from worst to best.
+
 | Alignment | Model                | Likelihood          | AIC                  | Time      | Log file                                   |
 |-----------|----------------------|---------------------|----------------------|-----------|--------------------------------------------|
 | Reduced   | Q.bacteria_phylum_1  | -131190357.878285   | 262629875.756571     | 1866.073  | QBp1G.raxml.log                            |
 | Reduced   | Q.bacteria_class_1   | -131099420.890135   | 262448001.780271     | 1442.474  | Q.bacteria_class_1_G_reduced_aln.raxml.log |
 | Reduced   | LG                   | -130592049.145638   | 261433258.291277     | 3785.556  | LGG.raxml.log                              |
 | Reduced   | Q.bacteria_order_1   | -130587008.543687   | 261423177.087373     | 1382.725  | Q.bacteria_order_1_G_reduced_aln.raxml.log |
+| Reduced   | Q.GTDB_sub_5k        | -130187129.127843   | 260623418.255687     | 1466.727  | Q.GTDB_sub_5k_G_reduced_aln.raxml.log      |
 | Full      | Q.bacteria_phylum_1  | -1088000564.208966  | 2176250288.417933    | 17965.016 | QBp1G_full.raxml.log                       |
 | Full      | Q.bacteria_class_1   | -1086808724.440440  | 2173866608.880880    | 12427.577 | Q.bacteria_class_1_G_full_aln.raxml.log    |
 | Full      | Q.bacteria_order_1   | -1082202438.322814  | 2164654036.645627    | 11859.777 | Q.bacteria_order_1_G_full_aln.raxml.log    |
 | Full      | LG                   | -1081479614.701307  | 2163208389.402613    | 20892.610 | LGG_full.raxml.log                         |
 | Full      | Q.bactera_sub_5k     | -1078809634.619930  | 2157868429.239860    | 11799.372 | Q.GTDB_sub_5k_G_full_aln.raxml.log         |
 
+
+Brief model explanations
+
+* **Q.bacteria_phylum_1**: one random sample per phylum, fix tree to r207
+* **Q.bacteria_class_1**: one random sample per class, fix tree to r207
+* **Q.bacteria_order_1**: one random sample per order, fix tree to r207
+* **Q.bacteria_family_1**: one random sample per family, fix tree to r207
+* **Q.bactera_sub_5k**: split tree into 673 sub-trees with up to 100 taxa, split 120 loci, randomly select 5k alignments
+* **Q.bactera_sub_1k**: split tree into 673 sub-trees with up to 100 taxa, split 120 loci, randomly select 1k alignments
 
 
 ## Introduction
@@ -1277,4 +1291,12 @@ echo "training_loci_50k: $n50k" >> log.txt
 
 Now we estimate the models, but we need to do this once for every training dataset.
 
-This is initially stored in `Q.GTDB_sub_5k.sh`
+## Q.GTDB_sub_5k
+
+This analysis is laid out in `Q.GTDB_sub_5k.sh`
+
+## Q.GTDB_sub_1k
+
+The 5k model works well, but maybe we can get away with a lot fewer training alignments, let's see. If so, it will make future directions a bit easier. For example, it may be possible to improve the matrix further by increasing the maximum size of the tree for each training locus. This will incur a lot of extra analysis time though, so it's worth looking at how much we really need to 5k loci.
+
+This analysis is laid out in `Q.GTDB_sub_1k.sh`

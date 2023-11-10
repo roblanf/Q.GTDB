@@ -1,6 +1,6 @@
 analysis="Q.GTDB_sub"
-training="training_loci_5k"
-name="5k"
+training="training_loci_1k"
+name="1k"
 new_model="Q.GTDB_sub_"$name
 
 
@@ -12,7 +12,7 @@ echo "Estimating initial models with IQ-TREE2 for" $training >> $log
 
 mkdir 02_fullcon_$training # first make the output directory
 model_set="LG,Q.pfam,Q.insect,Q.yeast"
-iqtree2 -T 128 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
+iqtree2 -T 256 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
 
 # get the list of models, and save it to models.txt
 grep '^ *[^ ]\+:' 02_fullcon_$training/iteration_1.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr > 02_fullcon_$training/models.txt
