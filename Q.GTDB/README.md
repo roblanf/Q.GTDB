@@ -1,5 +1,25 @@
 # Q.GTDB  
 
+## Results executive summary...
+
+I've estimated a lot of models below. The main question is how they perform on the full GTDB dataset, and here's a table for that...
+
+| Alignment | Model                | Likelihood          | AIC                  | Time      | Log file                                   |
+|-----------|----------------------|---------------------|----------------------|-----------|--------------------------------------------|
+| Reduced   | Q.bacteria_phylum_1  | -131190357.878285   | 262629875.756571     | 1866.073  | QBp1G.raxml.log                            |
+| Reduced   | Q.bacteria_class_1   | -131099420.890135   | 262448001.780271     | 1442.474  | Q.bacteria_class_1_G_reduced_aln.raxml.log |
+| Reduced   | LG                   | -130592049.145638   | 261433258.291277     | 3785.556  | LGG.raxml.log                              |
+| Reduced   | Q.bacteria_order_1   | -130587008.543687   | 261423177.087373     | 1382.725  | Q.bacteria_order_1_G_reduced_aln.raxml.log |
+| Full      | Q.bacteria_phylum_1  | -1088000564.208966  | 2176250288.417933    | 17965.016 | QBp1G_full.raxml.log                       |
+| Full      | Q.bacteria_class_1   | -1086808724.440440  | 2173866608.880880    | 12427.577 | Q.bacteria_class_1_G_full_aln.raxml.log    |
+| Full      | Q.bacteria_order_1   | -1082202438.322814  | 2164654036.645627    | 11859.777 | Q.bacteria_order_1_G_full_aln.raxml.log    |
+| Full      | LG                   | -1081479614.701307  | 2163208389.402613    | 20892.610 | LGG_full.raxml.log                         |
+| Full      | Q.bactera_sub_5k     | -1078809634.619930  | 2157868429.239860    | 11799.372 | Q.GTDB_sub_5k_G_full_aln.raxml.log         |
+
+
+
+## Introduction
+
 The aim for this matrix is to estimate a single amino acid matrix for the GTDB dataset.
 
 The dataset comprises 120 genes, each for ~85K taxa. The main challenges are that this is just too many taxa. So we need to come up with sensible ways of estimating matrices from a subset of the taxa. I will use a lot of the suggestions from https://github.com/roblanf/Q.GTDB, with some modifications.
@@ -823,11 +843,11 @@ Let's write another simple bash script for testing...
 
 ```{bash}
 analysis="class_1"
+new_model="Q.bacteria_"$analysis
 
 cd $analysis
 
 # extract the matrix
-new_model="Q.bacteria_"$analysis
 echo "" >> log.txt
 echo "## Model Testing ##" >> log.txt
 echo "Extracting model and saving to "$new_model >> log.txt
@@ -909,6 +929,7 @@ Likelihood      AIC     Time    Filename
 -1088000564.208966      2176250288.417933       17965.016       QBp1G_full.raxml.log
 -1086808724.440440      2173866608.880880       12427.577       Q.bacteria_class_1_G_full_aln.raxml.log
 -1081479614.701307      2163208389.402613       20892.610       LGG_full.raxml.log
+-1078809634.619930      2157868429.239860       11799.372       Q.GTDB_sub_5k_G_full_aln.raxml.log
 ```
 
 ### Q.order_1
@@ -943,6 +964,8 @@ And now we can test it with the testing script above after changing the first li
 ```{bash}
 analysis="order_1"
 ```
+
+
 
 ### Q.family_1
 
