@@ -1256,7 +1256,7 @@ Now we estimate the models, but we need to do this once for every training datas
 
 ```{bash}
 analysis="Q.GTDB_sub"
-training="training_loci_100"
+training="training_loci_1k"
 
 # 5. Estimate the models
 
@@ -1264,7 +1264,7 @@ echo "Estimating initial models with IQ-TREE2 for $training" >> log.txt
 
 mkdir 02_fullcon_$training # first make the output directory
 model_set="LG,Q.pfam,Q.insect,Q.yeast"
-iqtree2 -T 200 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
+iqtree2 -T 100 -st AA -S $training -cmax 4 -mset $model_set -pre 02_fullcon_$training/iteration_1
 
 # get the list of models, and save it to models.txt
 grep '^ *[^ ]\+:' 02_fullcon_$training/iteration_1.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr > 02_fullcon_$training/models.txt
@@ -1282,5 +1282,5 @@ echo $initial_model >> log.txt
 
 echo "Estimating Q matrix with IQ-TREE2" >> log.txt
 
-iqtree2 -T 200 -S $training -p 02_fullcon_$training/iteration_1.best_scheme.nex -te 02_fullcon_$training/iteration_1.treefile --init-model $initial_model --model-joint GTR20+FO -pre 02_fullcon_$training/iteration_1.GTR20
+iqtree2 -T 100 -S 02_fullcon_$training/iteration_1.best_scheme.nex -te 02_fullcon_$training/iteration_1.treefile --init-model LG --model-joint GTR20+FO -pre 02_fullcon_$training/iteration_1.GTR20
 ```

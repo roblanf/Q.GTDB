@@ -1,0 +1,24 @@
+Command terminated by signal 2
+	Command being timed: "raxml-ng --msa ../alignments/gtdb_r207_bac120_concatenated.faa --model LG+I+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/LGIG"
+	User time (seconds): 189898.05
+	System time (seconds): 15232.19
+	Percent of CPU this job got: 1589%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:35:04
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 122634664
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 26
+	Minor (reclaiming a frame) page faults: 6530248718
+	Voluntary context switches: 10875675
+	Involuntary context switches: 19797485
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 639336
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

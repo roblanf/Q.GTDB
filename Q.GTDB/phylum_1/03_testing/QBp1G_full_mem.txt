@@ -1,0 +1,23 @@
+	Command being timed: "raxml-ng --msa ../alignments/gtdb_r207_bac120_full.faa --model PROTGTR{Q.bacteria_phylum_1}+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/QBp1G_full"
+	User time (seconds): 259432.50
+	System time (seconds): 23679.22
+	Percent of CPU this job got: 1575%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:59:32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 494779504
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 19
+	Minor (reclaiming a frame) page faults: 5808112009
+	Voluntary context switches: 38202077
+	Involuntary context switches: 26458787
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 48176
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

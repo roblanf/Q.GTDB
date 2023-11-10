@@ -1,0 +1,4 @@
+    305 LG
+    295 Q.insect
+    205 Q.pfam
+    195 Q.yeast

@@ -1,0 +1,165 @@
+IQ-TREE 2.2.5 COVID-edition built Sep 15 2023
+
+Partition file name: loci/testing_loci/
+Type of analysis: ModelFinder + tree reconstruction
+Random seed number: 136550
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used partition models please also cite:
+
+Olga Chernomor, Arndt von Haeseler, and Bui Quang Minh (2016)
+Terrace aware data structure for phylogenomic inference from
+supermatrices. Syst. Biol., 65:997-1008.
+https://doi.org/10.1093/sysbio/syw037
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 140 taxa with 20 partitions and 6401 total sites (7.36046% missing data)
+
+  ID	Type	Seq	Site	Unique	Infor	Invar	Const	Name
+   1	AA	139	121	117	102	11	11	gtdb_r207_bac120_PF00380.20.faa
+   2	AA	140	126	125	117	6	6	gtdb_r207_bac120_PF00410.20.faa
+   3	AA	116	166	165	162	2	2	gtdb_r207_bac120_PF01025.20.faa
+   4	AA	125	83	82	79	2	2	gtdb_r207_bac120_PF03726.15.faa
+   5	AA	130	111	110	102	5	5	gtdb_r207_bac120_TIGR00043.faa
+   6	AA	131	115	115	111	2	2	gtdb_r207_bac120_TIGR00082.faa
+   7	AA	139	233	231	215	8	8	gtdb_r207_bac120_TIGR00088.faa
+   8	AA	136	574	573	544	16	16	gtdb_r207_bac120_TIGR00194.faa
+   9	AA	120	130	128	124	6	6	gtdb_r207_bac120_TIGR00250.faa
+  10	AA	136	843	822	762	47	47	gtdb_r207_bac120_TIGR00396.faa
+  11	AA	129	351	345	324	19	19	gtdb_r207_bac120_TIGR00420.faa
+  12	AA	130	210	205	195	11	11	gtdb_r207_bac120_TIGR00431.faa
+  13	AA	136	406	399	383	15	15	gtdb_r207_bac120_TIGR00442.faa
+  14	AA	129	367	367	364	2	2	gtdb_r207_bac120_TIGR00663.faa
+  15	AA	130	800	785	723	42	42	gtdb_r207_bac120_TIGR01063.faa
+  16	AA	97	450	445	405	20	20	gtdb_r207_bac120_TIGR01302.faa
+  17	AA	136	340	338	324	7	7	gtdb_r207_bac120_TIGR01953.faa
+  18	AA	128	355	349	323	18	18	gtdb_r207_bac120_TIGR02397.faa
+  19	AA	128	432	428	406	23	23	gtdb_r207_bac120_TIGR03594.faa
+  20	AA	139	188	187	180	7	7	gtdb_r207_bac120_TIGR03953.faa
+
+Column meanings:
+  Unique: Number of unique site patterns
+  Infor:  Number of parsimony-informative sites
+  Invar:  Number of invariant sites
+  Const:  Number of constant sites (can be subset of invariant sites)
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: Q.bacteria_phylum_1+I+R8:gtdb_r207_bac120_PF00380.20.faa,Q.bacteria_phylum_1+I+R6:gtdb_r207_bac120_PF00410.20.faa,Q.bacteria_phylum_1+R7:gtdb_r207_bac120_PF01025.20.faa,Q.bacteria_phylum_1+I+R6:gtdb_r207_bac120_PF03726.15.faa,Q.bacteria_phylum_1+I+R7:gtdb_r207_bac120_TIGR00043.faa,Q.bacteria_phylum_1+R6:gtdb_r207_bac120_TIGR00082.faa,Q.bacteria_phylum_1+R8:gtdb_r207_bac120_TIGR00088.faa,Q.bacteria_phylum_1+R9:gtdb_r207_bac120_TIGR00194.faa,Q.bacteria_phylum_1+I+R6:gtdb_r207_bac120_TIGR00250.faa,Q.bacteria_phylum_1+R10:gtdb_r207_bac120_TIGR00396.faa,Q.bacteria_phylum_1+I+R10:gtdb_r207_bac120_TIGR00420.faa,Q.bacteria_phylum_1+I+R8:gtdb_r207_bac120_TIGR00431.faa,Q.bacteria_phylum_1+R9:gtdb_r207_bac120_TIGR00442.faa,Q.yeast+I+R8:gtdb_r207_bac120_TIGR00663.faa,Q.bacteria_phylum_1+R10:gtdb_r207_bac120_TIGR01063.faa,Q.bacteria_phylum_1+I+R7:gtdb_r207_bac120_TIGR01302.faa,Q.bacteria_phylum_1+R8:gtdb_r207_bac120_TIGR01953.faa,Q.bacteria_phylum_1+R9:gtdb_r207_bac120_TIGR02397.faa,Q.bacteria_phylum_1+I+R8:gtdb_r207_bac120_TIGR03594.faa,Q.bacteria_phylum_1+I+R7:gtdb_r207_bac120_TIGR03953.faa
+
+List of best-fit models per partition:
+
+  ID  Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+   1  Q.bacteria_phylum_1+I+R8  -22020.713   44621.426 + 6.92e-310  213401.426 + 6.92e-310   45432.205 +        0
+   2  Q.bacteria_phylum_1+I+R6  -24406.216   49388.432 + 6.92e-310  215852.432 + 6.92e-310   50205.281 +        0
+   3  Q.bacteria_phylum_1+R7  -33834.533   68151.066 + 6.92e-310  184795.066 + 6.92e-310   68901.055 +        0
+   4  Q.bacteria_phylum_1+I+R6  -19864.631   40245.261 + 6.92e-310  173889.261 + 6.92e-310   40869.322 +        0
+   5  Q.bacteria_phylum_1+I+R7  -23660.463   47860.925 + 6.92e-310  194200.925 + 6.92e-310   48592.499 +        0
+   6  Q.bacteria_phylum_1+R6  -26103.269   52744.539 + 6.92e-310  198004.539 + 6.92e-310   53482.925 +        0
+   7  Q.bacteria_phylum_1+R8  -45981.870   92541.741 + 6.92e-310  260161.741 + 6.92e-310   93539.091 +        0
+   8  Q.bacteria_phylum_1+R9 -128540.400  257650.800 + 6.92e-310  258216.841 + 6.92e-310  258891.299 +        0
+   9  Q.bacteria_phylum_1+I+R6  -27922.148   56340.295 + 6.92e-310  179844.295 + 6.92e-310   57051.444 +        0
+  10  Q.bacteria_phylum_1+R10 -151952.856  304479.711 + 6.92e-310  304777.571 + 6.92e-310  305839.221 +        0
+  11  Q.bacteria_phylum_1+I+R10  -74420.951  149389.902 + 6.92e-310  151372.796 + 6.92e-310  150447.757 +        0
+  12  Q.bacteria_phylum_1+I+R8  -45121.496   90786.993 + 6.92e-310  239298.993 + 6.92e-310   91697.406 +        0
+  13  Q.bacteria_phylum_1+R9  -90242.428  181054.857 + 6.92e-310  182413.357 + 6.92e-310  182196.668 +        0
+  14  Q.yeast+I+R8     -91393.271  183326.543 + 6.92e-310  184850.918 + 6.92e-310  184380.990 +        0
+  15  Q.bacteria_phylum_1+R10 -136575.581  273701.162 + 6.92e-310  273990.856 + 6.92e-310  274989.430 +        0
+  16  Q.bacteria_phylum_1+I+R7  -51734.104  103876.208 + 6.92e-310  104217.596 + 6.92e-310  104714.494 +        0
+  17  Q.bacteria_phylum_1+R8  -67293.136  135152.273 + 6.92e-310  138022.702 + 6.92e-310  136235.865 +        0
+  18  Q.bacteria_phylum_1+R9  -71017.329  142572.659 + 6.92e-310  144281.600 + 6.92e-310  143614.258 +        0
+  19  Q.bacteria_phylum_1+I+R8  -92474.664  185485.327 + 6.92e-310  186369.892 + 6.92e-310  186575.666 +        0
+  20  Q.bacteria_phylum_1+I+R7  -43421.225   87418.450 + 6.92e-310  253882.450 + 6.92e-310   88350.546 +        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Topology-unlinked partition model with separate substitution models and separate rates across sites
+
+  ID  Model         TreeLen  Parameters
+   1  Q.bacteria_phylum_1+I+R8 85.6003  Q.bacteria_phylum_1+I{0.0255763}+R8{0.128039,0.00996748,0.142379,0.125173,0.120411,0.310252,0.162815,0.641397,0.123209,1.00236,0.175092,1.80183,0.100747,2.78271,0.0217297,5.5122}
+   2  Q.bacteria_phylum_1+I+R6 84.7661  Q.bacteria_phylum_1+I{0.0473963}+R6{0.116615,0.0923657,0.173077,0.243925,0.18505,0.573089,0.22513,1.10639,0.132752,1.9736,0.119981,2.74943}
+   3  Q.bacteria_phylum_1+R7 144.1837  Q.bacteria_phylum_1+R7{0.0726876,0.0406196,0.0709023,0.161752,0.1486,0.358182,0.158045,0.64043,0.257533,1.05225,0.196708,1.52821,0.0955236,2.71698}
+   4  Q.bacteria_phylum_1+I+R6 170.5185  Q.bacteria_phylum_1+I{0.0238262}+R6{0.0643064,0.0422053,0.0436363,0.213794,0.163583,0.467748,0.301893,0.878153,0.316315,1.45073,0.0864394,2.16852}
+   5  Q.bacteria_phylum_1+I+R7 146.3857  Q.bacteria_phylum_1+I{0.028602}+R7{0.0946328,0.0412286,0.12063,0.210786,0.147122,0.419873,0.14204,0.698214,0.18291,1.20159,0.226324,1.86317,0.0577386,2.91421}
+   6  Q.bacteria_phylum_1+R6 125.5204  Q.bacteria_phylum_1+R6{0.0528759,0.0409217,0.0750458,0.217745,0.195669,0.407069,0.180154,0.779517,0.22185,1.19051,0.274405,1.81227}
+   7  Q.bacteria_phylum_1+R8 104.3704  Q.bacteria_phylum_1+R8{0.130483,0.0325536,0.0943103,0.158795,0.12064,0.318157,0.157113,0.543791,0.193515,0.900809,0.102312,1.54989,0.107135,2.09465,0.0944921,3.17122}
+   8  Q.bacteria_phylum_1+R9 150.1233  Q.bacteria_phylum_1+R9{0.0442854,0.00577418,0.0434551,0.0443514,0.0743859,0.12581,0.0889278,0.233914,0.10253,0.405242,0.151286,0.654618,0.134868,0.971581,0.295592,1.69735,0.0646699,3.00473}
+   9  Q.bacteria_phylum_1+I+R6 131.8487  Q.bacteria_phylum_1+I{0.0456286}+R6{0.0356719,0.0478751,0.123189,0.180531,0.148508,0.369915,0.228427,0.734653,0.217637,1.30589,0.200939,2.33451}
+  10  Q.bacteria_phylum_1+R10 92.2485  Q.bacteria_phylum_1+R10{0.089704,0.00621523,0.0978683,0.0514201,0.0775272,0.129,0.0707983,0.240739,0.133097,0.437315,0.111947,0.709694,0.105808,1.07078,0.116677,1.5701,0.132836,2.28308,0.0637372,3.60771}
+  11  Q.bacteria_phylum_1+I+R10 130.6400  Q.bacteria_phylum_1+I{0.0392653}+R10{0.0594165,0.0109464,0.0752002,0.0876774,0.0872303,0.2056,0.108847,0.347083,0.0779797,0.525123,0.127772,0.793726,0.111092,1.15141,0.168774,1.72857,0.124524,2.29618,0.0198985,4.47751}
+  12  Q.bacteria_phylum_1+I+R8 124.9107  Q.bacteria_phylum_1+I{0.0491697}+R8{0.0984198,0.0426442,0.0663184,0.137323,0.0915396,0.264808,0.162825,0.481164,0.185263,0.926331,0.192063,1.50157,0.139062,2.2888,0.0153396,6.89814}
+  13  Q.bacteria_phylum_1+R9 118.7329  Q.bacteria_phylum_1+R9{0.0728374,0.0119675,0.0962166,0.124131,0.0961853,0.252469,0.114658,0.427276,0.164998,0.671713,0.115392,0.979027,0.128004,1.37038,0.150919,2.08262,0.0607891,3.2964}
+  14  Q.yeast+I+R8   154.6616  Q.yeast+I{0.00532519}+R8{0.018452,0.0519951,0.0543914,0.148396,0.129383,0.311059,0.215169,0.560951,0.206415,0.871066,0.219897,1.36713,0.12719,2.13345,0.0237777,3.29052}
+  15  Q.bacteria_phylum_1+R10 75.0064  Q.bacteria_phylum_1+R10{0.0816691,0.00887461,0.0715601,0.0586558,0.0938243,0.154399,0.0901045,0.315886,0.152213,0.514469,0.106884,0.765305,0.127664,1.14618,0.118948,1.68559,0.117019,2.49435,0.0401147,3.82187}
+  16  Q.bacteria_phylum_1+I+R7 51.3990  Q.bacteria_phylum_1+I{0.0206714}+R7{0.154231,0.0451868,0.176179,0.197321,0.173953,0.471827,0.145599,0.845037,0.116032,1.3495,0.133531,2.244,0.0798023,3.72074}
+  17  Q.bacteria_phylum_1+R8 95.3496  Q.bacteria_phylum_1+R8{0.0682541,0.0282603,0.0628977,0.130812,0.101982,0.265651,0.211853,0.503097,0.17066,0.8047,0.144001,1.2236,0.137486,1.82312,0.102866,2.83851}
+  18  Q.bacteria_phylum_1+R9 128.2909  Q.bacteria_phylum_1+R9{0.0982661,0.00817126,0.0632223,0.0462996,0.0638457,0.123974,0.111496,0.256558,0.112016,0.437667,0.153706,0.791736,0.165745,1.2727,0.216309,2.29801,0.0153922,5.26264}
+  19  Q.bacteria_phylum_1+I+R8 128.1046  Q.bacteria_phylum_1+I{0.0515921}+R8{0.0427387,0.0321142,0.0934621,0.162914,0.111746,0.320075,0.161863,0.533914,0.182922,0.870963,0.18486,1.39752,0.137262,2.27313,0.0335531,3.92016}
+  20  Q.bacteria_phylum_1+I+R7 116.4528  Q.bacteria_phylum_1+I{0.0369599}+R7{0.0414618,0.0567772,0.136863,0.242295,0.129924,0.474262,0.215258,0.737283,0.192356,1.08517,0.150916,1.79173,0.0962613,2.75315}
+
+TREE USED FOR ModelFinder
+-------------------------
+
+Log-likelihood of the tree: -1267953.7303 (s.e. 8518.2747)
+Unconstrained log-likelihood (without tree): -38118.2472
+Number of free parameters (#branches + #model parameters): 5413
+Akaike information criterion (AIC) score: 2546733.4606
+Corrected Akaike information criterion (AICc) score: 2606117.4160
+Bayesian information criterion (BIC) score: 2583348.1266
+
+Total tree length (sum of branch lengths): 2359.1142
+Sum of internal branch lengths: 257.4018 (10.9110% of tree length)
+
+Tree topologies are unlinked across partitions, thus no drawing will be displayed here
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t 03_testing/test_loci_mf.treefile
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s <alignment.phy> --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s <alignment.phy> --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Wed Nov  1 00:05:55 2023
+Total CPU time used: 2459 seconds (0h:40m:59s)
+Total wall-clock time used: 772.9 seconds (0h:12m:52s)
+

@@ -1,0 +1,405 @@
+IQ-TREE 2.2.5 COVID-edition built Sep 15 2023
+
+Partition file name: training_loci_100
+Type of analysis: ModelFinder + tree reconstruction
+Random seed number: 345189
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used partition models please also cite:
+
+Olga Chernomor, Arndt von Haeseler, and Bui Quang Minh (2016)
+Terrace aware data structure for phylogenomic inference from
+supermatrices. Syst. Biol., 65:997-1008.
+https://doi.org/10.1093/sysbio/syw037
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 4118 taxa with 100 partitions and 35828 total sites (98.8598% missing data)
+
+  ID	Type	Seq	Site	Unique	Infor	Invar	Const	Name
+   1	AA	27	530	339	182	231	231	005_gtdb_r207_bac120_TIGR00398.faa
+   2	AA	71	95	95	83	5	5	007_gtdb_r207_bac120_TIGR00166.faa
+   3	AA	54	436	399	341	74	74	009_gtdb_r207_bac120_TIGR00928.faa
+   4	AA	75	368	356	311	38	38	011_gtdb_r207_bac120_TIGR00092.faa
+   5	AA	76	526	469	381	96	96	011_gtdb_r207_bac120_TIGR00337.faa
+   6	AA	31	843	641	521	241	241	019_gtdb_r207_bac120_TIGR00396.faa
+   7	AA	69	367	364	325	16	16	032_gtdb_r207_bac120_TIGR00663.faa
+   8	AA	33	279	257	225	43	43	034_gtdb_r207_bac120_TIGR00064.faa
+   9	AA	63	275	241	195	60	60	035_gtdb_r207_bac120_TIGR01171.faa
+  10	AA	22	310	287	246	39	39	058_gtdb_r207_bac120_TIGR00006.faa
+  11	AA	22	275	212	168	84	84	058_gtdb_r207_bac120_TIGR01171.faa
+  12	AA	77	462	291	224	211	211	061_gtdb_r207_bac120_TIGR01039.faa
+  13	AA	51	155	138	104	40	40	065_gtdb_r207_bac120_TIGR01510.faa
+  14	AA	49	140	110	80	52	52	067_gtdb_r207_bac120_TIGR01632.faa
+  15	AA	29	428	326	249	128	128	068_gtdb_r207_bac120_TIGR00959.faa
+  16	AA	22	154	49	26	124	124	090_gtdb_r207_bac120_TIGR01029.faa
+  17	AA	90	194	179	153	33	33	094_gtdb_r207_bac120_TIGR00095.faa
+  18	AA	33	126	78	39	75	75	103_gtdb_r207_bac120_TIGR01164.faa
+  19	AA	64	166	164	158	5	5	110_gtdb_r207_bac120_PF01025.20.faa
+  20	AA	44	414	346	276	95	95	115_gtdb_r207_bac120_TIGR01391.faa
+  21	AA	62	130	129	117	10	10	122_gtdb_r207_bac120_TIGR00250.faa
+  22	AA	73	144	119	85	48	48	123_gtdb_r207_bac120_TIGR01071.faa
+  23	AA	42	324	167	122	183	183	145_gtdb_r207_bac120_TIGR00468.faa
+  24	AA	70	587	407	324	220	220	159_gtdb_r207_bac120_TIGR00487.faa
+  25	AA	23	355	291	228	92	92	166_gtdb_r207_bac120_TIGR02397.faa
+  26	AA	75	432	346	282	123	123	174_gtdb_r207_bac120_TIGR03594.faa
+  27	AA	74	279	158	115	139	139	178_gtdb_r207_bac120_TIGR00064.faa
+  28	AA	72	449	372	313	102	102	178_gtdb_r207_bac120_TIGR01082.faa
+  29	AA	30	196	78	47	138	138	185_gtdb_r207_bac120_TIGR00615.faa
+  30	AA	27	530	341	250	213	213	189_gtdb_r207_bac120_TIGR00398.faa
+  31	AA	65	315	303	273	29	29	194_gtdb_r207_bac120_TIGR00460.faa
+  32	AA	55	175	153	133	36	36	201_gtdb_r207_bac120_TIGR03654.faa
+  33	AA	62	449	346	272	126	126	202_gtdb_r207_bac120_TIGR01082.faa
+  34	AA	93	111	87	65	43	43	209_gtdb_r207_bac120_TIGR00043.faa
+  35	AA	31	340	88	43	281	281	215_gtdb_r207_bac120_TIGR01953.faa
+  36	AA	44	367	290	205	102	102	233_gtdb_r207_bac120_TIGR00663.faa
+  37	AA	39	314	197	157	136	136	240_gtdb_r207_bac120_TIGR03723.faa
+  38	AA	50	890	775	637	191	191	241_gtdb_r207_bac120_TIGR00593.faa
+  39	AA	32	428	108	76	342	342	266_gtdb_r207_bac120_TIGR00959.faa
+  40	AA	52	57	41	23	28	28	270_gtdb_r207_bac120_TIGR00964.faa
+  41	AA	76	175	83	47	116	116	270_gtdb_r207_bac120_TIGR03654.faa
+  42	AA	22	410	169	129	258	258	272_gtdb_r207_bac120_TIGR00115.faa
+  43	AA	33	516	150	122	380	380	276_gtdb_r207_bac120_TIGR00717.faa
+  44	AA	77	275	91	53	205	205	304_gtdb_r207_bac120_TIGR01171.faa
+  45	AA	33	787	289	213	533	533	319_gtdb_r207_bac120_TIGR00963.faa
+  46	AA	93	861	520	365	402	402	320_gtdb_r207_bac120_TIGR00392.faa
+  47	AA	25	466	368	252	149	149	326_gtdb_r207_bac120_TIGR00435.faa
+  48	AA	23	353	174	132	199	199	327_gtdb_r207_bac120_TIGR00065.faa
+  49	AA	22	121	75	44	62	62	341_gtdb_r207_bac120_PF00380.20.faa
+  50	AA	42	586	356	316	243	243	358_gtdb_r207_bac120_TIGR00459.faa
+  51	AA	48	526	412	321	149	149	361_gtdb_r207_bac120_TIGR00337.faa
+  52	AA	13	526	329	246	233	233	362_gtdb_r207_bac120_TIGR00337.faa
+  53	AA	28	225	57	19	191	191	364_gtdb_r207_bac120_TIGR01011.faa
+  54	AA	64	596	411	209	225	225	373_gtdb_r207_bac120_TIGR02350.faa
+  55	AA	54	437	323	272	130	130	384_gtdb_r207_bac120_TIGR00362.faa
+  56	AA	22	180	143	96	66	66	400_gtdb_r207_bac120_TIGR03263.faa
+  57	AA	28	155	85	47	90	90	402_gtdb_r207_bac120_TIGR01510.faa
+  58	AA	43	639	322	271	334	334	415_gtdb_r207_bac120_TIGR01059.faa
+  59	AA	42	121	53	26	87	87	444_gtdb_r207_bac120_PF00380.20.faa
+  60	AA	13	99	37	9	80	80	450_gtdb_r207_bac120_TIGR00090.faa
+  61	AA	72	890	812	673	162	162	464_gtdb_r207_bac120_TIGR00593.faa
+  62	AA	36	563	504	439	80	80	484_gtdb_r207_bac120_TIGR00634.faa
+  63	AA	28	115	62	35	71	71	487_gtdb_r207_bac120_TIGR00082.faa
+  64	AA	63	421	394	315	55	55	505_gtdb_r207_bac120_TIGR00054.faa
+  65	AA	21	73	53	30	37	37	507_gtdb_r207_bac120_TIGR00810.faa
+  66	AA	23	144	97	47	76	76	526_gtdb_r207_bac120_TIGR01071.faa
+  67	AA	26	639	202	123	475	475	527_gtdb_r207_bac120_TIGR01059.faa
+  68	AA	64	639	365	279	312	312	532_gtdb_r207_bac120_TIGR01059.faa
+  69	AA	32	100	72	38	47	47	539_gtdb_r207_bac120_PF00466.21.faa
+  70	AA	73	596	288	153	391	391	546_gtdb_r207_bac120_TIGR02350.faa
+  71	AA	77	227	77	49	169	169	547_gtdb_r207_bac120_TIGR01169.faa
+  72	AA	48	421	222	148	219	219	550_gtdb_r207_bac120_TIGR00054.faa
+  73	AA	31	73	42	18	49	49	550_gtdb_r207_bac120_TIGR00810.faa
+  74	AA	39	111	73	30	59	59	553_gtdb_r207_bac120_TIGR00043.faa
+  75	AA	19	172	41	11	150	150	557_gtdb_r207_bac120_TIGR00922.faa
+  76	AA	23	340	178	93	185	185	562_gtdb_r207_bac120_TIGR01953.faa
+  77	AA	34	165	61	31	124	124	566_gtdb_r207_bac120_TIGR00168.faa
+  78	AA	28	787	461	381	376	376	569_gtdb_r207_bac120_TIGR00963.faa
+  79	AA	42	175	95	64	98	98	579_gtdb_r207_bac120_TIGR03654.faa
+  80	AA	39	172	67	19	141	141	580_gtdb_r207_bac120_TIGR00922.faa
+  81	AA	23	449	232	176	236	236	582_gtdb_r207_bac120_TIGR01082.faa
+  82	AA	19	298	46	19	276	276	586_gtdb_r207_bac120_TIGR02027.faa
+  83	AA	20	176	128	96	66	66	589_gtdb_r207_bac120_TIGR00496.faa
+  84	AA	69	594	448	344	201	201	599_gtdb_r207_bac120_TIGR01394.faa
+  85	AA	71	194	164	125	58	58	600_gtdb_r207_bac120_TIGR00095.faa
+  86	AA	71	890	549	429	413	413	600_gtdb_r207_bac120_TIGR00593.faa
+  87	AA	66	286	138	99	169	169	600_gtdb_r207_bac120_TIGR01146.faa
+  88	AA	67	321	119	59	248	248	600_gtdb_r207_bac120_TIGR02012.faa
+  89	AA	55	99	84	54	41	41	602_gtdb_r207_bac120_TIGR00090.faa
+  90	AA	26	256	203	160	74	74	607_gtdb_r207_bac120_TIGR00755.faa
+  91	AA	21	569	313	196	319	319	623_gtdb_r207_bac120_TIGR00456.faa
+  92	AA	44	270	67	34	223	223	624_gtdb_r207_bac120_TIGR00436.faa
+  93	AA	22	596	160	106	455	455	626_gtdb_r207_bac120_TIGR02350.faa
+  94	AA	64	141	71	41	92	92	627_gtdb_r207_bac120_TIGR01066.faa
+  95	AA	28	406	239	138	224	224	635_gtdb_r207_bac120_TIGR00442.faa
+  96	AA	44	800	329	256	496	496	636_gtdb_r207_bac120_TIGR01063.faa
+  97	AA	49	351	175	122	199	199	649_gtdb_r207_bac120_TIGR00420.faa
+  98	AA	19	361	252	184	132	132	652_gtdb_r207_bac120_TIGR00539.faa
+  99	AA	40	112	69	40	60	60	659_gtdb_r207_bac120_TIGR00059.faa
+ 100	AA	55	367	135	85	271	271	663_gtdb_r207_bac120_TIGR00663.faa
+
+Column meanings:
+  Unique: Number of unique site patterns
+  Infor:  Number of parsimony-informative sites
+  Invar:  Number of invariant sites
+  Const:  Number of constant sites (can be subset of invariant sites)
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: Q.yeast+I+R2:005_gtdb_r207_bac120_TIGR00398.faa,Q.yeast+I+G4:007_gtdb_r207_bac120_TIGR00166.faa,LG+I+G4:009_gtdb_r207_bac120_TIGR00928.faa,LG+I+G4:011_gtdb_r207_bac120_TIGR00092.faa,LG+I+R4:011_gtdb_r207_bac120_TIGR00337.faa,LG+I+G4:019_gtdb_r207_bac120_TIGR00396.faa,Q.insect+I+R4:032_gtdb_r207_bac120_TIGR00663.faa,Q.yeast+I+G4:034_gtdb_r207_bac120_TIGR00064.faa,Q.insect+I+G4:035_gtdb_r207_bac120_TIGR01171.faa,LG+I+G4:058_gtdb_r207_bac120_TIGR00006.faa,LG+I+G4:058_gtdb_r207_bac120_TIGR01171.faa,LG+R4:061_gtdb_r207_bac120_TIGR01039.faa,LG+I+G4:065_gtdb_r207_bac120_TIGR01510.faa,Q.insect+I+G4:067_gtdb_r207_bac120_TIGR01632.faa,Q.yeast+F+I+G4:068_gtdb_r207_bac120_TIGR00959.faa,Q.pfam+I:090_gtdb_r207_bac120_TIGR01029.faa,Q.pfam+I+R4:094_gtdb_r207_bac120_TIGR00095.faa,LG+G4:103_gtdb_r207_bac120_TIGR01164.faa,Q.yeast+R4:110_gtdb_r207_bac120_PF01025.20.faa,Q.insect+R4:115_gtdb_r207_bac120_TIGR01391.faa,LG+I+G4:122_gtdb_r207_bac120_TIGR00250.faa,Q.yeast+I+G4:123_gtdb_r207_bac120_TIGR01071.faa,LG+I+G4:145_gtdb_r207_bac120_TIGR00468.faa,Q.insect+R4:159_gtdb_r207_bac120_TIGR00487.faa,Q.insect+F+I+G4:166_gtdb_r207_bac120_TIGR02397.faa,Q.insect+I+R4:174_gtdb_r207_bac120_TIGR03594.faa,LG+F+I+G4:178_gtdb_r207_bac120_TIGR00064.faa,Q.pfam+F+I+R4:178_gtdb_r207_bac120_TIGR01082.faa,Q.insect+I+R2:185_gtdb_r207_bac120_TIGR00615.faa,Q.yeast+I+R3:189_gtdb_r207_bac120_TIGR00398.faa,LG+I+R4:194_gtdb_r207_bac120_TIGR00460.faa,Q.yeast+I+G4:201_gtdb_r207_bac120_TIGR03654.faa,LG+I+G4:202_gtdb_r207_bac120_TIGR01082.faa,Q.insect+I+G4:209_gtdb_r207_bac120_TIGR00043.faa,Q.pfam+I+G4:215_gtdb_r207_bac120_TIGR01953.faa,Q.insect+R4:233_gtdb_r207_bac120_TIGR00663.faa,LG+F+I+G4:240_gtdb_r207_bac120_TIGR03723.faa,LG+F+I+R4:241_gtdb_r207_bac120_TIGR00593.faa,Q.insect+G4:266_gtdb_r207_bac120_TIGR00959.faa,Q.pfam+I+G4:270_gtdb_r207_bac120_TIGR00964.faa,Q.yeast+I+G4:270_gtdb_r207_bac120_TIGR03654.faa,Q.yeast+F+G4:272_gtdb_r207_bac120_TIGR00115.faa,Q.insect+I+G4:276_gtdb_r207_bac120_TIGR00717.faa,LG+I+R2:304_gtdb_r207_bac120_TIGR01171.faa,Q.yeast+F+I+G4:319_gtdb_r207_bac120_TIGR00963.faa,Q.yeast+I+R4:320_gtdb_r207_bac120_TIGR00392.faa,Q.yeast+F+I+G4:326_gtdb_r207_bac120_TIGR00435.faa,LG+I+R2:327_gtdb_r207_bac120_TIGR00065.faa,Q.insect+G4:341_gtdb_r207_bac120_PF00380.20.faa,LG+I+R3:358_gtdb_r207_bac120_TIGR00459.faa,Q.pfam+R4:361_gtdb_r207_bac120_TIGR00337.faa,LG+I+R2:362_gtdb_r207_bac120_TIGR00337.faa,LG+R2:364_gtdb_r207_bac120_TIGR01011.faa,Q.insect+F+I+R3:373_gtdb_r207_bac120_TIGR02350.faa,Q.yeast+I+R4:384_gtdb_r207_bac120_TIGR00362.faa,Q.pfam+I+G4:400_gtdb_r207_bac120_TIGR03263.faa,Q.pfam+G4:402_gtdb_r207_bac120_TIGR01510.faa,Q.insect+I+G4:415_gtdb_r207_bac120_TIGR01059.faa,LG+I+G4:444_gtdb_r207_bac120_PF00380.20.faa,LG+G4:450_gtdb_r207_bac120_TIGR00090.faa,Q.pfam+F+I+R4:464_gtdb_r207_bac120_TIGR00593.faa,LG+F+I+G4:484_gtdb_r207_bac120_TIGR00634.faa,Q.insect+G4:487_gtdb_r207_bac120_TIGR00082.faa,Q.pfam+I+R4:505_gtdb_r207_bac120_TIGR00054.faa,Q.pfam+I:507_gtdb_r207_bac120_TIGR00810.faa,Q.pfam+G4:526_gtdb_r207_bac120_TIGR01071.faa,Q.insect+I+G4:527_gtdb_r207_bac120_TIGR01059.faa,Q.insect+R4:532_gtdb_r207_bac120_TIGR01059.faa,Q.insect+G4:539_gtdb_r207_bac120_PF00466.21.faa,Q.insect+F+I+R3:546_gtdb_r207_bac120_TIGR02350.faa,LG+I+G4:547_gtdb_r207_bac120_TIGR01169.faa,Q.pfam+I+R2:550_gtdb_r207_bac120_TIGR00054.faa,Q.pfam+I:550_gtdb_r207_bac120_TIGR00810.faa,LG+G4:553_gtdb_r207_bac120_TIGR00043.faa,Q.insect+R2:557_gtdb_r207_bac120_TIGR00922.faa,Q.insect+G4:562_gtdb_r207_bac120_TIGR01953.faa,LG+I+G4:566_gtdb_r207_bac120_TIGR00168.faa,Q.yeast+F+I+G4:569_gtdb_r207_bac120_TIGR00963.faa,Q.insect+I+G4:579_gtdb_r207_bac120_TIGR03654.faa,Q.insect+I+R2:580_gtdb_r207_bac120_TIGR00922.faa,LG+F+I+G4:582_gtdb_r207_bac120_TIGR01082.faa,LG+I:586_gtdb_r207_bac120_TIGR02027.faa,Q.insect+G4:589_gtdb_r207_bac120_TIGR00496.faa,Q.insect+I+R4:599_gtdb_r207_bac120_TIGR01394.faa,Q.insect+F+I+G4:600_gtdb_r207_bac120_TIGR00095.faa,Q.pfam+F+I+R4:600_gtdb_r207_bac120_TIGR00593.faa,Q.insect+I+G4:600_gtdb_r207_bac120_TIGR01146.faa,Q.insect+I+G4:600_gtdb_r207_bac120_TIGR02012.faa,LG+I+G4:602_gtdb_r207_bac120_TIGR00090.faa,Q.pfam+F+I+G4:607_gtdb_r207_bac120_TIGR00755.faa,Q.pfam+I+G4:623_gtdb_r207_bac120_TIGR00456.faa,Q.insect+I+R2:624_gtdb_r207_bac120_TIGR00436.faa,Q.insect+F+I+G4:626_gtdb_r207_bac120_TIGR02350.faa,Q.pfam+I+G4:627_gtdb_r207_bac120_TIGR01066.faa,Q.pfam+I+R3:635_gtdb_r207_bac120_TIGR00442.faa,Q.insect+F+I+R3:636_gtdb_r207_bac120_TIGR01063.faa,Q.pfam+I+G4:649_gtdb_r207_bac120_TIGR00420.faa,Q.pfam+I+G4:652_gtdb_r207_bac120_TIGR00539.faa,Q.insect+G4:659_gtdb_r207_bac120_TIGR00059.faa,Q.insect+I+G4:663_gtdb_r207_bac120_TIGR00663.faa
+
+List of best-fit models per partition:
+
+  ID  Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+   1  Q.yeast+I+R2      -6157.442   12422.884 - 6.94e-310   12435.389 + 6.94e-310   12653.619 +        0
+   2  Q.yeast+I+G4      -5003.138   10288.275 - 6.94e-310   50332.275 + 6.94e-310   10648.372 +        0
+   3  LG+I+G4          -22006.993   44227.985 - 6.94e-310   44298.449 + 6.94e-310   44664.293 +        0
+   4  LG+I+G4          -21076.192   42450.383 - 6.94e-310   42655.429 + 6.94e-310   43032.688 +        0
+   5  LG+I+R4          -28992.813   58297.627 - 6.94e-310   58430.375 + 6.94e-310   58963.014 +        0
+   6  LG+I+G4          -21844.460   43810.920 - 6.94e-310   43820.605 + 6.94e-310   44099.875 +        0
+   7  Q.insect+I+R4    -24488.563   49261.126 - 6.94e-310   49442.429 + 6.94e-310   49815.687 +        0
+   8  Q.yeast+I+G4     -11204.513   22539.025 - 6.94e-310   22579.307 + 6.94e-310   22775.054 +        0
+   9  Q.insect+I+G4    -12498.433   25246.866 - 6.94e-310   25458.275 + 6.94e-310   25698.962 +        0
+  10  LG+I+G4          -10588.776   21263.552 - 6.94e-310   21277.778 + 6.94e-310   21424.225 +        0
+  11  LG+I+G4           -5485.921   11057.842 - 6.94e-310   11074.222 + 6.94e-310   11213.363 +        0
+  12  LG+R4            -11074.555   22463.111 - 6.94e-310   22626.308 + 6.94e-310   23112.395 +        0
+  13  LG+I+G4           -5569.047   11340.093 - 6.94e-310   11728.848 + 6.94e-310   11647.479 +        0
+  14  Q.insect+I+G4     -3332.155    6858.310 - 6.94e-310    7310.976 + 6.94e-310    7143.649 +        0
+  15  Q.yeast+F+I+G4    -9357.765   18867.530 - 6.94e-310   18900.875 + 6.94e-310   19176.023 +        0
+  16  Q.pfam+I           -891.788    1867.576 - 6.94e-310    1900.117 + 6.94e-310    1995.128 +        0
+  17  Q.pfam+I+R4      -14168.598   28705.195 - 6.94e-310   36269.640 + 6.94e-310   29306.481 +        0
+  18  LG+G4             -1317.415    2762.831 - 6.94e-310    2899.224 + 6.94e-310    2944.353 +        0
+  19  Q.yeast+R4       -14424.298   29110.595 - 6.94e-310   30127.771 + 6.94e-310   29518.265 +        0
+  20  Q.insect+R4      -10327.742   20837.484 - 6.94e-310   20889.484 + 6.94e-310   21203.838 +        0
+  21  LG+I+G4          -11430.919   23107.838 - 6.94e-310   28191.838 + 6.94e-310   23460.545 +        0
+  22  Q.yeast+I+G4      -5215.680   10721.359 - 6.94e-310   53061.359 + 6.94e-310   11151.982 +        0
+  23  LG+I+G4           -3934.742    8035.484 - 6.94e-310    8093.584 + 6.94e-310    8349.286 +        0
+  24  Q.insect+R4      -15799.919   31885.838 - 6.94e-310   31978.804 + 6.94e-310   32511.467 +        0
+  25  Q.insect+F+I+G4   -6651.378   13430.757 - 6.94e-310   13459.447 + 6.94e-310   13678.572 +        0
+  26  Q.insect+I+R4    -15521.839   31351.678 - 6.94e-310   31524.025 + 6.94e-310   31978.216 +        0
+  27  LG+F+I+G4         -6845.674   14023.348 - 6.94e-310   14518.383 + 6.94e-310   14626.129 +        0
+  28  Q.pfam+F+I+R4    -21344.741   43023.482 - 6.94e-310   43223.169 + 6.94e-310   43709.355 +        0
+  29  Q.insect+I+R2     -1569.382    3258.764 - 6.94e-310    3312.986 + 6.94e-310    3455.451 +        0
+  30  Q.yeast+I+R3      -9068.027   18248.053 - 6.94e-310   18261.550 + 6.94e-310   18487.334 +        0
+  31  LG+I+R4          -22427.764   45123.528 - 6.94e-310   45324.528 + 6.94e-310   45626.372 +        0
+  32  Q.yeast+I+G4      -7150.373   14518.746 - 6.94e-310   14887.670 + 6.94e-310   14863.708 +        0
+  33  LG+I+G4          -20450.360   41146.720 - 6.94e-310   41240.578 + 6.94e-310   41651.884 +        0
+  34  Q.insect+I+G4     -5188.873   10747.746 - 6.94e-310   79567.746 + 6.94e-310   11249.009 +        0
+  35  Q.pfam+I+G4       -1880.207    3882.414 - 6.94e-310    3909.623 + 6.94e-310    4115.980 +        0
+  36  Q.insect+R4       -7735.973   15653.946 - 6.94e-310   15714.833 + 6.94e-310   16009.334 +        0
+  37  LG+F+I+G4         -6023.753   12239.506 - 6.94e-310   12325.331 + 6.94e-310   12599.448 +        0
+  38  LG+F+I+R4        -39829.943   79905.885 - 6.94e-310   79945.708 + 6.94e-310   80495.206 +        0
+  39  Q.insect+G4       -2205.085    4534.170 - 6.94e-310    4555.573 + 6.94e-310    4785.836 +        0
+  40  Q.pfam+I+G4        -948.069    2102.138 - 6.94e-310   23526.138 + 6.94e-310    2312.572 +        0
+  41  Q.yeast+I+G4      -2151.559    4605.118 - 6.94e-310    6600.944 + 6.94e-310    5083.001 +        0
+  42  Q.yeast+F+G4      -3105.902    6333.803 - 6.94e-310    6355.539 + 6.94e-310    6578.789 +        0
+  43  Q.insect+I+G4     -3919.202    7968.405 - 6.94e-310    7987.471 + 6.94e-310    8244.401 +        0
+  44  LG+I+R2           -2632.784    5573.567 - 6.94e-310    5971.401 + 6.94e-310    6130.550 +        0
+  45  Q.yeast+F+I+G4    -8480.694   17129.389 - 6.94e-310   17149.731 + 6.94e-310   17521.520 +        0
+  46  Q.yeast+I+R4     -23554.281   47488.562 - 6.94e-310   47596.890 + 6.94e-310   48392.600 +        0
+  47  Q.yeast+F+I+G4   -10167.090   20470.180 - 6.94e-310   20493.817 + 6.94e-310   20751.984 +        0
+  48  LG+I+R2           -3830.271    7752.541 - 6.94e-310    7766.672 + 6.94e-310    7930.399 +        0
+  49  Q.insect+G4       -1274.286    2632.572 - 6.94e-310    2678.880 + 6.94e-310    2749.995 +        0
+  50  LG+I+R3           -8720.923   17613.845 - 6.94e-310   17643.833 + 6.94e-310   17989.951 +        0
+  51  Q.pfam+R4        -18195.670   36589.340 - 6.94e-310   36635.819 + 6.94e-310   37011.605 +        0
+  52  LG+I+R2           -5908.099   11868.199 - 6.94e-310   11871.013 + 6.94e-310   11979.097 +        0
+  53  LG+R2             -1016.470    2142.941 - 6.94e-310    2179.390 + 6.94e-310    2330.826 +        0
+  54  Q.insect+F+I+R3  -10213.430   20724.861 - 6.94e-310   20825.085 + 6.94e-310   21379.006 +        0
+  55  Q.yeast+I+R4     -13066.061   26356.122 - 6.94e-310   26434.246 + 6.94e-310   26813.075 +        0
+  56  Q.pfam+I+G4       -3615.327    7316.655 - 6.94e-310    7344.478 + 6.94e-310    7453.952 +        0
+  57  Q.pfam+G4         -1920.797    3949.594 - 6.94e-310    4008.994 + 6.94e-310    4113.939 +        0
+  58  Q.insect+I+G4     -9152.216   18474.432 - 6.94e-310   18500.870 + 6.94e-310   18853.524 +        0
+  59  LG+I+G4           -1023.384    2212.769 - 6.94e-310    2589.634 + 6.94e-310    2444.819 +        0
+  60  LG+G4              -472.354     992.707 - 6.94e-310    1008.924 + 6.94e-310    1054.990 +        0
+  61  Q.pfam+F+I+R4    -59888.035  120110.070 - 6.94e-310  120187.788 + 6.94e-310  120910.204 +        0
+  62  LG+F+I+G4        -22044.869   44269.737 - 6.94e-310   44304.440 + 6.94e-310   44659.732 +        0
+  63  Q.insect+G4        -981.365    2070.731 - 6.94e-310    2169.731 + 6.94e-310    2218.957 +        0
+  64  Q.pfam+I+R4      -21696.015   43652.030 - 6.94e-310   43769.478 + 6.94e-310   44177.572 +        0
+  65  Q.pfam+I           -656.236    1392.472 - 6.94e-310    1494.972 + 6.94e-310    1484.090 +        0
+  66  Q.pfam+G4         -1569.648    3227.296 - 6.94e-310    3267.296 + 6.94e-310    3357.968 +        0
+  67  Q.insect+I+G4     -4837.387    9776.775 - 6.94e-310    9785.811 + 6.94e-310   10004.230 +        0
+  68  Q.insect+R4      -12391.929   25045.858 - 6.94e-310   25114.071 + 6.94e-310   25630.105 +        0
+  69  Q.insect+G4       -1299.331    2722.662 - 6.94e-310    2933.797 + 6.94e-310    2884.182 +        0
+  70  Q.insect+F+I+R3   -7164.752   14663.505 - 6.94e-310   14794.608 + 6.94e-310   15396.675 +        0
+  71  LG+I+G4           -2642.338    5590.676 - 6.94e-310    6236.210 + 6.94e-310    6114.693 +        0
+  72  Q.pfam+I+R2       -5326.873   10845.746 - 6.94e-310   10903.228 + 6.94e-310   11233.839 +        0
+  73  Q.pfam+I           -530.050    1180.101 - 6.94e-310    1790.101 + 6.94e-310    1317.528 +        0
+  74  LG+G4             -1288.560    2729.120 - 6.94e-310    3073.355 + 6.94e-310    2935.044 +        0
+  75  Q.insect+R2        -739.087    1552.174 - 6.94e-310    1573.159 + 6.94e-310    1668.631 +        0
+  76  Q.insect+G4       -3000.394    6088.788 - 6.94e-310    6102.212 + 6.94e-310    6257.262 +        0
+  77  LG+I+G4           -1135.859    2405.719 - 6.94e-310    2499.657 + 6.94e-310    2613.817 +        0
+  78  Q.yeast+F+I+G4   -11632.518   23413.036 - 6.94e-310   23428.626 + 6.94e-310   23758.485 +        0
+  79  Q.insect+I+G4     -2261.673    4689.347 - 6.94e-310    4842.578 + 6.94e-310    4952.024 +        0
+  80  Q.insect+I+R2      -948.196    2052.391 - 6.94e-310    2184.908 + 6.94e-310    2297.896 +        0
+  81  LG+F+I+G4         -5767.782   11663.565 - 6.94e-310   11685.231 + 6.94e-310   11926.414 +        0
+  82  LG+I              -1121.143    2314.286 - 6.94e-310    2324.492 + 6.94e-310    2447.381 +        0
+  83  Q.insect+G4       -2600.870    5277.740 - 6.94e-310    5299.375 + 6.94e-310    5398.219 +        0
+  84  Q.insect+I+R4    -16416.147   33116.294 - 6.94e-310   33206.343 + 6.94e-310   33739.231 +        0
+  85  Q.insect+F+I+G4   -7945.987   16211.973 - 6.94e-310   17773.185 + 6.94e-310   16734.830 +        0
+  86  Q.pfam+F+I+R4    -26749.787   53829.574 - 6.94e-310   53905.237 + 6.94e-310   54620.125 +        0
+  87  Q.insect+I+G4     -4064.260    8390.519 - 6.94e-310    8615.090 + 6.94e-310    8869.454 +        0
+  88  Q.insect+I+G4     -3075.544    6417.087 - 6.94e-310    6607.697 + 6.94e-310    6918.689 +        0
+  89  LG+I+G4           -2025.596    4269.192 - 6.94e-310   28249.192 + 6.94e-310    4552.060 +        0
+  90  Q.pfam+F+I+G4     -5643.993   11427.985 - 6.94e-310   11481.715 + 6.94e-310   11676.148 +        0
+  91  Q.pfam+I+G4       -6692.061   13466.122 - 6.94e-310   13472.657 + 6.94e-310   13644.221 +        0
+  92  Q.insect+I+R2     -1552.064    3280.129 - 6.94e-310    3366.670 + 6.94e-310    3596.790 +        0
+  93  Q.insect+F+I+G4   -3870.123    7864.247 - 6.94e-310    7878.903 + 6.94e-310    8136.441 +        0
+  94  Q.pfam+I+G4       -1800.582    3855.165 - 6.94e-310    6356.088 + 6.94e-310    4229.657 +        0
+  95  Q.pfam+I+R3       -6069.196   12254.392 - 6.94e-310   12274.115 + 6.94e-310   12486.760 +        0
+  96  Q.insect+F+I+R3  -10614.768   21447.536 - 6.94e-310   21482.290 + 6.94e-310   21958.159 +        0
+  97  Q.pfam+I+G4       -7144.992   14483.984 - 6.94e-310   14559.130 + 6.94e-310   14858.480 +        0
+  98  Q.pfam+I+G4       -6432.672   12939.344 - 6.94e-310   12948.050 + 6.94e-310   13083.232 +        0
+  99  Q.insect+G4       -1460.293    3076.585 - 6.94e-310    3450.040 + 6.94e-310    3288.628 +        0
+ 100  Q.insect+I+G4     -3522.897    7263.793 - 6.94e-310    7357.101 + 6.94e-310    7689.478 +        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Topology-unlinked partition model with separate substitution models and separate rates across sites
+
+  ID  Model         TreeLen  Parameters
+   1  Q.yeast+I+R2   3.1913  Q.yeast+I{0.337712}+R2{0.497336,0.71109,0.164952,3.91841}
+   2  Q.yeast+I+G4   17.2611  Q.yeast+I{0.0321004}+G4{1.54713}
+   3  LG+I+G4        16.3136  LG+I{0.136951}+G4{1.11276}
+   4  LG+I+G4        20.0911  LG+I{0.0667108}+G4{0.867472}
+   5  LG+I+R4        18.5393  LG+I{0.123258}+R4{0.280384,0.111632,0.291892,0.569668,0.18745,1.69088,0.117017,4.14865}
+   6  LG+I+G4        8.2139  LG+I{0.162647}+G4{0.880038}
+   7  Q.insect+I+R4  20.7843  Q.insect+I{0.0297133}+R4{0.215591,0.15685,0.364664,0.649274,0.290182,1.51196,0.0998504,2.91111}
+   8  Q.yeast+I+G4   18.4945  Q.yeast+I{0.121607}+G4{1.08626}
+   9  Q.insect+I+G4  14.5579  Q.insect+I{0.172162}+G4{0.860277}
+  10  LG+I+G4        13.4428  LG+I{0.0871563}+G4{1.36125}
+  11  LG+I+G4        4.8592  LG+I{0.238126}+G4{1.87073}
+  12  LG+R4          4.5938  LG+R4{0.543955,0.0503618,0.273812,0.930647,0.128862,2.80489,0.0533711,6.67661}
+  13  LG+I+G4        11.9517  LG+I{0.189629}+G4{0.778738}
+  14  Q.insect+I+G4  5.3828  Q.insect+I{0.229369}+G4{0.731088}
+  15  Q.yeast+F+I+G4 6.3819  Q.yeast+F+I{0.211316}+G4{0.959256}
+  16  Q.pfam+I       0.5138  Q.pfam+I{0.771816}
+  17  Q.pfam+I+R4    26.8668  Q.pfam+I{0.108668}+R4{0.248529,0.165994,0.22701,0.633981,0.323921,1.6331,0.0918723,3.11117}
+  18  LG+G4          1.5615  LG+G4{0.296256}
+  19  Q.yeast+R4     38.6280  Q.yeast+R4{0.112895,0.068719,0.185742,0.310109,0.468211,0.965068,0.233152,2.0707}
+  20  Q.insect+R4    6.1970  Q.insect+R4{0.327452,0.0834332,0.374853,0.637685,0.251139,1.94148,0.0465558,5.28529}
+  21  LG+I+G4        34.3212  LG+I{0.0705102}+G4{1.11519}
+  22  Q.yeast+I+G4   9.9213  Q.yeast+I{0.294598}+G4{1.1106}
+  23  LG+I+G4        2.5335  LG+I{0.340212}+G4{0.812519}
+  24  Q.insect+R4    5.5950  Q.insect+R4{0.497236,0.0597266,0.286999,0.932588,0.154239,2.46329,0.0615266,5.24512}
+  25  Q.insect+F+I+G4 5.2458  Q.insect+F+I{0.137723}+G4{1.01293}
+  26  Q.insect+I+R4  8.7092  Q.insect+I{0.226735}+R4{0.283991,0.21464,0.305014,1.03142,0.170283,2.79859,0.0139768,10.5814}
+  27  LG+F+I+G4      6.0680  LG+F+I{0.424655}+G4{0.75749}
+  28  Q.pfam+F+I+R4  15.4193  Q.pfam+F+I{0.183487}+R4{0.280748,0.152322,0.233836,0.705425,0.214241,1.92716,0.0876878,4.32676}
+  29  Q.insect+I+R2  1.0320  Q.insect+I{0.67157}+R2{0.312849,2.48885,0.0155801,14.2081}
+  30  Q.yeast+I+R3   5.5141  Q.yeast+I{0.24703}+R3{0.360999,0.241428,0.292922,1.29066,0.0990488,5.39916}
+  31  LG+I+R4        26.5017  LG+I{0.0623648}+R4{0.206172,0.172057,0.34512,0.596495,0.288568,1.45116,0.0977757,3.4764}
+  32  Q.yeast+I+G4   13.2923  Q.yeast+I{0.185099}+G4{1.23021}
+  33  LG+I+G4        14.7169  LG+I{0.226166}+G4{0.775805}
+  34  Q.insect+I+G4  16.9846  Q.insect+I{0.37769}+G4{1.21097}
+  35  Q.pfam+I+G4    0.6960  Q.pfam+I{0.70667}+G4{0.664427}
+  36  Q.insect+R4    6.3183  Q.insect+R4{0.42729,0.123892,0.391644,0.690871,0.14147,2.62254,0.0395962,7.71476}
+  37  LG+F+I+G4      4.3679  LG+F+I{0.269263}+G4{0.654323}
+  38  LG+F+I+R4      16.5433  LG+F+I{0.180807}+R4{0.25591,0.153419,0.245852,0.648085,0.225126,1.8269,0.0923053,4.22646}
+  39  Q.insect+G4    0.3906  Q.insect+G4{0.131274}
+  40  Q.pfam+I+G4    4.3079  Q.pfam+I{0.31327}+G4{0.529334}
+  41  Q.yeast+I+G4   1.7156  Q.yeast+I{0.512675}+G4{0.630175}
+  42  Q.yeast+F+G4   1.1821  Q.yeast+F+G4{0.347046}
+  43  Q.insect+I+G4  0.9810  Q.insect+I{0.489005}+G4{0.423641}
+  44  LG+I+R2        1.0548  LG+I{0.657225}+R2{0.274204,1.27061,0.0685711,9.50246}
+  45  Q.yeast+F+I+G4 1.9013  Q.yeast+F+I{0.580418}+G4{0.782036}
+  46  Q.yeast+I+R4   6.4414  Q.yeast+I{0.359563}+R4{0.289675,0.197535,0.189397,1.11928,0.129401,3.55398,0.0319635,8.47531}
+  47  Q.yeast+F+I+G4 6.3171  Q.yeast+F+I{0.219256}+G4{0.896228}
+  48  LG+I+R2        2.1304  LG+I{0.44423}+R2{0.42228,0.919537,0.13349,4.58235}
+  49  Q.insect+G4    1.7217  Q.insect+G4{0.374548}
+  50  LG+I+R3        3.0328  LG+I{0.255682}+R3{0.426819,0.394776,0.258913,1.81896,0.0585857,6.15423}
+  51  Q.pfam+R4      9.6513  Q.pfam+R4{0.453041,0.062331,0.248488,0.626356,0.200879,1.87304,0.0975909,4.50723}
+  52  LG+I+R2        2.7278  LG+I{0.338076}+R2{0.489109,0.666212,0.172814,3.901}
+  53  LG+R2          0.3139  LG+R2{0.963393,0.432524,0.0366069,15.9344}
+  54  Q.insect+F+I+R3 7.4966  Q.insect+F+I{0.273556}+R3{0.451948,0.24425,0.154929,1.73287,0.119567,5.1949}
+  55  Q.yeast+I+R4   10.8889  Q.yeast+I{0.234247}+R4{0.305526,0.161053,0.261907,0.671557,0.153366,2.04152,0.0449541,10.2729}
+  56  Q.pfam+I+G4    4.8636  Q.pfam+I{0.293798}+G4{1.2687}
+  57  Q.pfam+G4      2.4637  Q.pfam+G4{0.245873}
+  58  Q.insect+I+G4  3.1843  Q.insect+I{0.3905}+G4{0.763904}
+  59  LG+I+G4        1.1983  LG+I{0.360001}+G4{0.276883}
+  60  LG+G4          0.3655  LG+G4{0.203483}
+  61  Q.pfam+F+I+R4  26.0854  Q.pfam+F+I{0.152092}+R4{0.235175,0.105699,0.270062,0.547856,0.222641,1.65615,0.12003,3.81955}
+  62  LG+F+I+G4      15.4848  LG+F+I{0.0916197}+G4{0.907892}
+  63  Q.insect+G4    1.1865  Q.insect+G4{0.311844}
+  64  Q.pfam+I+R4    17.0461  Q.pfam+I{0.0602524}+R4{0.277003,0.109573,0.348236,0.678034,0.209867,1.64801,0.104641,3.70474}
+  65  Q.pfam+I       1.2455  Q.pfam+I{0.370941}
+  66  Q.pfam+G4      2.0641  Q.pfam+G4{0.373276}
+  67  Q.insect+I+G4  1.1707  Q.insect+I{0.590439}+G4{0.588025}
+  68  Q.insect+R4    3.8780  Q.insect+R4{0.564686,0.0492041,0.243592,0.850131,0.140592,2.90261,0.05113,6.98309}
+  69  Q.insect+G4    2.2290  Q.insect+G4{0.431366}
+  70  Q.insect+F+I+R3 1.8047  Q.insect+F+I{0.540233}+R3{0.280947,0.530007,0.129525,3.06383,0.0492951,9.21497}
+  71  LG+I+G4        1.5013  LG+I{0.701196}+G4{1.17927}
+  72  Q.pfam+I+R2    1.8915  Q.pfam+I{0.412382}+R2{0.475302,0.961418,0.112316,4.83491}
+  73  Q.pfam+I       0.7606  Q.pfam+I{0.582256}
+  74  LG+G4          3.7628  LG+G4{0.339171}
+  75  Q.insect+R2    0.2420  Q.insect+R2{0.928968,0.309743,0.0710319,10.0273}
+  76  Q.insect+G4    1.5072  Q.insect+G4{0.401431}
+  77  LG+I+G4        0.8280  LG+I{0.484756}+G4{0.485298}
+  78  Q.yeast+F+I+G4 3.4614  Q.yeast+F+I{0.35359}+G4{0.823993}
+  79  Q.insect+I+G4  2.0152  Q.insect+I{0.437035}+G4{1.06002}
+  80  Q.insect+I+R2  0.4388  Q.insect+I{0.75742}+R2{0.236666,3.36129,0.00591454,34.5754}
+  81  LG+F+I+G4      2.8755  LG+F+I{0.407646}+G4{0.904624}
+  82  LG+I           0.1726  LG+I{0.907707}
+  83  Q.insect+G4    2.7507  Q.insect+G4{0.596592}
+  84  Q.insect+I+R4  6.0792  Q.insect+I{0.258013}+R4{0.360195,0.277231,0.203371,1.16143,0.127392,2.75832,0.0510295,6.12495}
+  85  Q.insect+F+I+G4 10.6967  Q.insect+F+I{0.256143}+G4{1.01363}
+  86  Q.pfam+F+I+R4  7.1739  Q.pfam+F+I{0.420942}+R4{0.206612,0.262387,0.20611,1.20316,0.137083,3.31007,0.0292533,8.34261}
+  87  Q.insect+I+G4  2.2868  Q.insect+I{0.421417}+G4{0.599936}
+  88  Q.insect+I+G4  1.5712  Q.insect+I{0.650781}+G4{0.420137}
+  89  LG+I+G4        5.2171  LG+I{0.338663}+G4{1.04404}
+  90  Q.pfam+F+I+G4  6.4168  Q.pfam+F+I{0.204457}+G4{1.10772}
+  91  Q.pfam+I+G4    2.2552  Q.pfam+I{0.433386}+G4{0.926441}
+  92  Q.insect+I+R2  0.5649  Q.insect+I{0.735522}+R2{0.220006,1.65489,0.0444714,14.2994}
+  93  Q.insect+F+I+G4 0.7854  Q.insect+F+I{0.657248}+G4{1.02266}
+  94  Q.pfam+I+G4    2.0349  Q.pfam+I{0.516801}+G4{0.695546}
+  95  Q.pfam+I+R3    4.0524  Q.pfam+I{0.469289}+R3{0.346191,0.446755,0.10656,2.38617,0.0779601,7.58165}
+  96  Q.insect+F+I+R3 2.3000  Q.insect+F+I{0.545024}+R3{0.261701,0.619742,0.148888,3.10182,0.0443877,8.47058}
+  97  Q.pfam+I+G4    4.7053  Q.pfam+I{0.481343}+G4{0.685449}
+  98  Q.pfam+I+G4    6.0307  Q.pfam+I{0.243314}+G4{0.896734}
+  99  Q.insect+G4    1.8899  Q.insect+G4{0.340022}
+ 100  Q.insect+I+G4  1.6119  Q.insect+I{0.673221}+G4{0.838941}
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -868203.8505 (s.e. 5882.8280)
+Unconstrained log-likelihood (without tree): -181271.9088
+Number of free parameters (#branches + #model parameters): 9512
+Akaike information criterion (AIC) score: 1755431.7009
+Corrected Akaike information criterion (AICc) score: 1762308.9691
+Bayesian information criterion (BIC) score: 1836155.1461
+
+Total tree length (sum of branch lengths): 686.0119
+Sum of internal branch lengths: 256.4381 (37.3810% of tree length)
+
+Tree topologies are unlinked across partitions, thus no drawing will be displayed here
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t 02_fullcon_training_loci_100/iteration_1.treefile
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s <alignment.phy> --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s <alignment.phy> --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Tue Nov  7 10:01:06 2023
+Total CPU time used: 1.306e+04 seconds (3h:37m:38s)
+Total wall-clock time used: 585.8 seconds (0h:9m:45s)
+

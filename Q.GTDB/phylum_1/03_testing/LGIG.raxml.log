@@ -1,0 +1,60 @@
+
+RAxML-NG v. 1.2.0 released on 09.05.2023 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: AMD EPYC 7742 64-Core Processor, 128 cores, 1007 GB RAM
+
+RAxML-NG was called at 31-Oct-2023 10:50:24 as follows:
+
+raxml-ng --msa ../alignments/gtdb_r207_bac120_concatenated.faa --model LG+I+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/LGIG
+
+Analysis options:
+  run mode: Evaluate tree likelihood
+  start tree(s): user
+  random seed: 1698709824
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  logLH epsilon: general: 0.100000, brlen-triplet: 1000.000000
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: AVX2
+  parallelization: coarse-grained (auto), PTHREADS (16 threads), thread pinning: OFF
+
+WARNING: Running in FORCE mode: some safety checks are disabled!
+
+[00:00:00] Reading alignment from file: ../alignments/gtdb_r207_bac120_concatenated.faa
+[00:00:00] Loaded alignment with 62291 taxa and 5036 sites
+
+Alignment comprises 1 partitions and 5036 patterns
+
+Partition 0: noname
+Model: LG+I+G4m
+Alignment sites / patterns: 5036 / 5036
+Gaps: 14.14 %
+Invariant sites: 0.00 %
+
+
+NOTE: Binary MSA file created: 03_testing/LGIG.raxml.rba
+
+Parallelization scheme autoconfig: 1 worker(s) x 16 thread(s)
+
+
+NOTE: Per-rate scalers were automatically enabled to prevent numerical issues on taxa-rich alignments.
+NOTE: You can use --force switch to skip this check and fall back to per-site scalers.
+
+[00:00:16] Loading user starting tree(s) from: ../r207_original_clean.tree
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:17] Data distribution: max. partitions/sites/weight per thread: 1 / 315 / 25200
+[00:00:17] Data distribution: max. searches per worker: 1
+
+Evaluating 1 trees
+
+[00:00:28] Tree #1, initial LogLikelihood: -130875391.939218
+
+[00:01:08 -130875391.939218] Initial branch length optimization
+[00:11:46 -130611663.877798] Model parameter optimization (eps = 0.100000)

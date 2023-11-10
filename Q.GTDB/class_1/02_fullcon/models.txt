@@ -1,0 +1,4 @@
+     47 LG
+     42 Q.pfam
+      7 Q.yeast
+      4 Q.insect

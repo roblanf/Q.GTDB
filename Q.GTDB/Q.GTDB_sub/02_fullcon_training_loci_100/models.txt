@@ -1,0 +1,4 @@
+     34 Q.insect
+     30 LG
+     21 Q.pfam
+     15 Q.yeast

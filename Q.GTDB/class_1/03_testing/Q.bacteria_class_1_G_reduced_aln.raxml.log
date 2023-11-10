@@ -1,0 +1,93 @@
+
+RAxML-NG v. 1.2.0 released on 09.05.2023 by The Exelixis Lab.
+Developed by: Alexey M. Kozlov and Alexandros Stamatakis.
+Contributors: Diego Darriba, Tomas Flouri, Benoit Morel, Sarah Lutteropp, Ben Bettisworth, Julia Haag, Anastasis Togkousidis.
+Latest version: https://github.com/amkozlov/raxml-ng
+Questions/problems/suggestions? Please visit: https://groups.google.com/forum/#!forum/raxml
+
+System: AMD EPYC 7742 64-Core Processor, 128 cores, 1007 GB RAM
+
+RAxML-NG was called at 03-Nov-2023 06:48:32 as follows:
+
+raxml-ng --msa ../alignments/gtdb_r207_bac120_concatenated.faa --model PROTGTR{Q.bacteria_class_1}+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.bacteria_class_1_G_reduced_aln
+
+Analysis options:
+  run mode: Evaluate tree likelihood
+  start tree(s): user
+  random seed: 1698954512
+  tip-inner: OFF
+  pattern compression: ON
+  per-rate scalers: OFF
+  site repeats: ON
+  logLH epsilon: general: 0.100000, brlen-triplet: 1000.000000
+  branch lengths: proportional (ML estimate, algorithm: NR-FAST)
+  SIMD kernels: AVX2
+  parallelization: coarse-grained (auto), PTHREADS (16 threads), thread pinning: OFF
+
+WARNING: Running in FORCE mode: some safety checks are disabled!
+
+[00:00:00] Reading alignment from file: ../alignments/gtdb_r207_bac120_concatenated.faa
+[00:00:00] Loaded alignment with 62291 taxa and 5036 sites
+
+Alignment comprises 1 partitions and 5036 patterns
+
+Partition 0: noname
+Model: PROTGTR{0.148249/0.124618/0.119925/6.426/0.504467/0.333961/1.04916/0.288891/0.037321/0.123001/0.142529/0.564555/0.16426/0.690934/2.14612/0.564287/0.168726/0.158414/1.04169/0.648061/0.063575/0.240912/1.3715/0.119257/0.278691/1.48023/0.053717/0.113855/2.26691/0.776515/0.0338/0.283255/0.361976/0.304868/0.614419/0.24827/0.105939/3.44515/0.699002/1.31331/0.195801/2.0295/4.69023/0.089347/0.041451/0.890974/0.290703/0.072855/0.305204/2.36972/1.18241/0.13042/0.35123/0.050897/0.376142/0.408898/2.39582/1.0561/0.702919/0.005985/0.01043/0.120791/0.065455/0.025472/0.723543/0.821797/0.277549/0.062335/0.09968/0.009416/0.118161/0.015415/1.84106/1.48845/0.984405/1.95282/0.056514/2.99254/3.04883/0.438484/3.11457/3.21764/1.62207/2.44011/5.57819/2.06659/0.383291/2.93278/0.034439/0.159318/1.33888/2.24788/0.036079/0.392753/0.832197/0.594983/0.194472/0.230378/0.138721/0.282131/0.23777/0.011846/0.022942/0.431837/0.190411/0.016485/0.499474/0.264475/0.331346/0.121765/0.071171/0.102636/0.568651/0.016773/0.046173/0.384707/0.138068/0.110947/0.610368/1.29911/0.139411/0.281694/0.107933/0.043836/0.073827/0.25897/0.513016/0.722274/0.986732/0.635958/0.823367/0.507685/1.51388/7.08643/0.151674/3.3356/0.032223/3.53482/1.36929/0.124207/0.020381/0.37311/0.245521/0.205542/7.83599/0.035501/5.5007/2.42066/0.168958/0.020054/0.142722/0.681591/0.133368/0.651738/0.561997/0.010732/0.3805/0.32891/0.3792/0.040939/0.051363/0.088278/2.39531/0.212107/0.330703/1.29051/1.30344/0.565/1.023/0.238958/0.09874/0.169776/5.08811/13.727/0.604091/0.991797/0.447919/0.324477/0.233539/0.374256/3.36618/0.176412/0.248011/0.017377/0.202883/0.227281/1.31287/5.62218/0.267256/0.234116}+FU{0.107071/0.081309/0.029619/0.049197/0.005426/0.038365/0.098606/0.042333/0.015715/0.056964/0.104309/0.090757/0.017675/0.027008/0.022439/0.062442/0.053166/0.005947/0.018882/0.072771}+G4m
+Alignment sites / patterns: 5036 / 5036
+Gaps: 14.14 %
+Invariant sites: 0.00 %
+
+
+NOTE: Binary MSA file created: 03_testing/Q.bacteria_class_1_G_reduced_aln.raxml.rba
+
+Parallelization scheme autoconfig: 1 worker(s) x 16 thread(s)
+
+
+NOTE: Per-rate scalers were automatically enabled to prevent numerical issues on taxa-rich alignments.
+NOTE: You can use --force switch to skip this check and fall back to per-site scalers.
+
+[00:00:17] Loading user starting tree(s) from: ../r207_original_clean.tree
+Parallel reduction/worker buffer size: 1 KB  / 0 KB
+
+[00:00:18] Data distribution: max. partitions/sites/weight per thread: 1 / 315 / 25200
+[00:00:18] Data distribution: max. searches per worker: 1
+
+Evaluating 1 trees
+
+[00:00:31] Tree #1, initial LogLikelihood: -131531335.404097
+
+[00:01:14 -131531335.404097] Initial branch length optimization
+[00:15:32 -131099633.390551] Model parameter optimization (eps = 0.100000)
+
+[00:23:51] Tree #1, final logLikelihood: -131099420.890135
+
+
+Optimized model parameters:
+
+   Partition 0: noname
+   Rate heterogeneity: GAMMA (4 cats, mean),  alpha: 1.011519 (ML),  weights&rates: (0.250000,0.139247) (0.250000,0.480187) (0.250000,1.001883) (0.250000,2.378684) 
+   Base frequencies (user): 0.107071 0.081309 0.029619 0.049197 0.005426 0.038365 0.098606 0.042333 0.015715 0.056964 0.104309 0.090757 0.017675 0.027008 0.022439 0.062442 0.053166 0.005947 0.018882 0.072771 
+   Substitution rates (user): 0.148249 0.124618 0.119925 6.426000 0.504467 0.333961 1.049155 0.288891 0.037321 0.123001 0.142529 0.564555 0.164260 0.690934 2.146121 0.564287 0.168726 0.158414 1.041687 0.648061 0.063575 0.240912 1.371505 0.119257 0.278691 1.480233 0.053717 0.113855 2.266906 0.776515 0.033800 0.283255 0.361976 0.304868 0.614419 0.248270 0.105939 3.445154 0.699002 1.313313 0.195801 2.029499 4.690233 0.089347 0.041451 0.890974 0.290703 0.072855 0.305204 2.369720 1.182413 0.130420 0.351230 0.050897 0.376142 0.408898 2.395821 1.056101 0.702919 0.005985 0.010430 0.120791 0.065455 0.025472 0.723543 0.821797 0.277549 0.062335 0.099680 0.009416 0.118161 0.015415 1.841059 1.488446 0.984405 1.952824 0.056514 2.992542 3.048834 0.438484 3.114567 3.217639 1.622070 2.440113 5.578192 2.066593 0.383291 2.932781 0.034439 0.159318 1.338882 2.247882 0.036079 0.392753 0.832197 0.594983 0.194472 0.230378 0.138721 0.282131 0.237770 0.011846 0.022942 0.431837 0.190411 0.016485 0.499474 0.264475 0.331346 0.121765 0.071171 0.102636 0.568651 0.016773 0.046173 0.384707 0.138068 0.110947 0.610368 1.299107 0.139411 0.281694 0.107933 0.043836 0.073827 0.258970 0.513016 0.722274 0.986732 0.635958 0.823367 0.507685 1.513883 7.086435 0.151674 3.335598 0.032223 3.534823 1.369292 0.124207 0.020381 0.373110 0.245521 0.205542 7.835988 0.035501 5.500704 2.420659 0.168958 0.020054 0.142722 0.681591 0.133368 0.651738 0.561997 0.010732 0.380500 0.328910 0.379200 0.040939 0.051363 0.088278 2.395312 0.212107 0.330703 1.290511 1.303443 0.565000 1.023005 0.238958 0.098740 0.169776 5.088112 13.727034 0.604091 0.991797 0.447919 0.324477 0.233539 0.374256 3.366184 0.176412 0.248011 0.017377 0.202883 0.227281 1.312872 5.622176 0.267256 0.234116 
+
+
+Final LogLikelihood: -131099420.890135
+
+AIC score: 262448001.780271 / AICc score: 31303049961.780270 / BIC score: 263260807.470360
+Free parameters (model + branch lengths): 124580
+
+WARNING: Number of free parameters (K=124580) is larger than alignment size (n=5036).
+         This might lead to overfitting and compromise tree inference results!
+
+
+WARNING: Best ML tree contains 26 near-zero branches!
+
+Best ML tree with collapsed near-zero branches saved to: /data/rob/gtdb/QGTDB/class_1/03_testing/Q.bacteria_class_1_G_reduced_aln.raxml.bestTreeCollapsed
+Best ML tree saved to: /data/rob/gtdb/QGTDB/class_1/03_testing/Q.bacteria_class_1_G_reduced_aln.raxml.bestTree
+Optimized model saved to: /data/rob/gtdb/QGTDB/class_1/03_testing/Q.bacteria_class_1_G_reduced_aln.raxml.bestModel
+
+Execution log saved to: /data/rob/gtdb/QGTDB/class_1/03_testing/Q.bacteria_class_1_G_reduced_aln.raxml.log
+
+Analysis started: 03-Nov-2023 06:48:32 / finished: 03-Nov-2023 07:12:34
+
+Elapsed time: 1442.474 seconds
+

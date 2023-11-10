@@ -1,0 +1,204 @@
+#nexus
+begin sets;
+  charset 005_gtdb_r207_bac120_TIGR00398.faa = training_loci_100/005_gtdb_r207_bac120_TIGR00398.faa: ;
+  charset 007_gtdb_r207_bac120_TIGR00166.faa = training_loci_100/007_gtdb_r207_bac120_TIGR00166.faa: ;
+  charset 009_gtdb_r207_bac120_TIGR00928.faa = training_loci_100/009_gtdb_r207_bac120_TIGR00928.faa: ;
+  charset 011_gtdb_r207_bac120_TIGR00092.faa = training_loci_100/011_gtdb_r207_bac120_TIGR00092.faa: ;
+  charset 011_gtdb_r207_bac120_TIGR00337.faa = training_loci_100/011_gtdb_r207_bac120_TIGR00337.faa: ;
+  charset 019_gtdb_r207_bac120_TIGR00396.faa = training_loci_100/019_gtdb_r207_bac120_TIGR00396.faa: ;
+  charset 032_gtdb_r207_bac120_TIGR00663.faa = training_loci_100/032_gtdb_r207_bac120_TIGR00663.faa: ;
+  charset 034_gtdb_r207_bac120_TIGR00064.faa = training_loci_100/034_gtdb_r207_bac120_TIGR00064.faa: ;
+  charset 035_gtdb_r207_bac120_TIGR01171.faa = training_loci_100/035_gtdb_r207_bac120_TIGR01171.faa: ;
+  charset 058_gtdb_r207_bac120_TIGR00006.faa = training_loci_100/058_gtdb_r207_bac120_TIGR00006.faa: ;
+  charset 058_gtdb_r207_bac120_TIGR01171.faa = training_loci_100/058_gtdb_r207_bac120_TIGR01171.faa: ;
+  charset 061_gtdb_r207_bac120_TIGR01039.faa = training_loci_100/061_gtdb_r207_bac120_TIGR01039.faa: ;
+  charset 065_gtdb_r207_bac120_TIGR01510.faa = training_loci_100/065_gtdb_r207_bac120_TIGR01510.faa: ;
+  charset 067_gtdb_r207_bac120_TIGR01632.faa = training_loci_100/067_gtdb_r207_bac120_TIGR01632.faa: ;
+  charset 068_gtdb_r207_bac120_TIGR00959.faa = training_loci_100/068_gtdb_r207_bac120_TIGR00959.faa: ;
+  charset 090_gtdb_r207_bac120_TIGR01029.faa = training_loci_100/090_gtdb_r207_bac120_TIGR01029.faa: ;
+  charset 094_gtdb_r207_bac120_TIGR00095.faa = training_loci_100/094_gtdb_r207_bac120_TIGR00095.faa: ;
+  charset 103_gtdb_r207_bac120_TIGR01164.faa = training_loci_100/103_gtdb_r207_bac120_TIGR01164.faa: ;
+  charset 110_gtdb_r207_bac120_PF01025.20.faa = training_loci_100/110_gtdb_r207_bac120_PF01025.20.faa: ;
+  charset 115_gtdb_r207_bac120_TIGR01391.faa = training_loci_100/115_gtdb_r207_bac120_TIGR01391.faa: ;
+  charset 122_gtdb_r207_bac120_TIGR00250.faa = training_loci_100/122_gtdb_r207_bac120_TIGR00250.faa: ;
+  charset 123_gtdb_r207_bac120_TIGR01071.faa = training_loci_100/123_gtdb_r207_bac120_TIGR01071.faa: ;
+  charset 145_gtdb_r207_bac120_TIGR00468.faa = training_loci_100/145_gtdb_r207_bac120_TIGR00468.faa: ;
+  charset 159_gtdb_r207_bac120_TIGR00487.faa = training_loci_100/159_gtdb_r207_bac120_TIGR00487.faa: ;
+  charset 166_gtdb_r207_bac120_TIGR02397.faa = training_loci_100/166_gtdb_r207_bac120_TIGR02397.faa: ;
+  charset 174_gtdb_r207_bac120_TIGR03594.faa = training_loci_100/174_gtdb_r207_bac120_TIGR03594.faa: ;
+  charset 178_gtdb_r207_bac120_TIGR00064.faa = training_loci_100/178_gtdb_r207_bac120_TIGR00064.faa: ;
+  charset 178_gtdb_r207_bac120_TIGR01082.faa = training_loci_100/178_gtdb_r207_bac120_TIGR01082.faa: ;
+  charset 185_gtdb_r207_bac120_TIGR00615.faa = training_loci_100/185_gtdb_r207_bac120_TIGR00615.faa: ;
+  charset 189_gtdb_r207_bac120_TIGR00398.faa = training_loci_100/189_gtdb_r207_bac120_TIGR00398.faa: ;
+  charset 194_gtdb_r207_bac120_TIGR00460.faa = training_loci_100/194_gtdb_r207_bac120_TIGR00460.faa: ;
+  charset 201_gtdb_r207_bac120_TIGR03654.faa = training_loci_100/201_gtdb_r207_bac120_TIGR03654.faa: ;
+  charset 202_gtdb_r207_bac120_TIGR01082.faa = training_loci_100/202_gtdb_r207_bac120_TIGR01082.faa: ;
+  charset 209_gtdb_r207_bac120_TIGR00043.faa = training_loci_100/209_gtdb_r207_bac120_TIGR00043.faa: ;
+  charset 215_gtdb_r207_bac120_TIGR01953.faa = training_loci_100/215_gtdb_r207_bac120_TIGR01953.faa: ;
+  charset 233_gtdb_r207_bac120_TIGR00663.faa = training_loci_100/233_gtdb_r207_bac120_TIGR00663.faa: ;
+  charset 240_gtdb_r207_bac120_TIGR03723.faa = training_loci_100/240_gtdb_r207_bac120_TIGR03723.faa: ;
+  charset 241_gtdb_r207_bac120_TIGR00593.faa = training_loci_100/241_gtdb_r207_bac120_TIGR00593.faa: ;
+  charset 266_gtdb_r207_bac120_TIGR00959.faa = training_loci_100/266_gtdb_r207_bac120_TIGR00959.faa: ;
+  charset 270_gtdb_r207_bac120_TIGR00964.faa = training_loci_100/270_gtdb_r207_bac120_TIGR00964.faa: ;
+  charset 270_gtdb_r207_bac120_TIGR03654.faa = training_loci_100/270_gtdb_r207_bac120_TIGR03654.faa: ;
+  charset 272_gtdb_r207_bac120_TIGR00115.faa = training_loci_100/272_gtdb_r207_bac120_TIGR00115.faa: ;
+  charset 276_gtdb_r207_bac120_TIGR00717.faa = training_loci_100/276_gtdb_r207_bac120_TIGR00717.faa: ;
+  charset 304_gtdb_r207_bac120_TIGR01171.faa = training_loci_100/304_gtdb_r207_bac120_TIGR01171.faa: ;
+  charset 319_gtdb_r207_bac120_TIGR00963.faa = training_loci_100/319_gtdb_r207_bac120_TIGR00963.faa: ;
+  charset 320_gtdb_r207_bac120_TIGR00392.faa = training_loci_100/320_gtdb_r207_bac120_TIGR00392.faa: ;
+  charset 326_gtdb_r207_bac120_TIGR00435.faa = training_loci_100/326_gtdb_r207_bac120_TIGR00435.faa: ;
+  charset 327_gtdb_r207_bac120_TIGR00065.faa = training_loci_100/327_gtdb_r207_bac120_TIGR00065.faa: ;
+  charset 341_gtdb_r207_bac120_PF00380.20.faa = training_loci_100/341_gtdb_r207_bac120_PF00380.20.faa: ;
+  charset 358_gtdb_r207_bac120_TIGR00459.faa = training_loci_100/358_gtdb_r207_bac120_TIGR00459.faa: ;
+  charset 361_gtdb_r207_bac120_TIGR00337.faa = training_loci_100/361_gtdb_r207_bac120_TIGR00337.faa: ;
+  charset 362_gtdb_r207_bac120_TIGR00337.faa = training_loci_100/362_gtdb_r207_bac120_TIGR00337.faa: ;
+  charset 364_gtdb_r207_bac120_TIGR01011.faa = training_loci_100/364_gtdb_r207_bac120_TIGR01011.faa: ;
+  charset 373_gtdb_r207_bac120_TIGR02350.faa = training_loci_100/373_gtdb_r207_bac120_TIGR02350.faa: ;
+  charset 384_gtdb_r207_bac120_TIGR00362.faa = training_loci_100/384_gtdb_r207_bac120_TIGR00362.faa: ;
+  charset 400_gtdb_r207_bac120_TIGR03263.faa = training_loci_100/400_gtdb_r207_bac120_TIGR03263.faa: ;
+  charset 402_gtdb_r207_bac120_TIGR01510.faa = training_loci_100/402_gtdb_r207_bac120_TIGR01510.faa: ;
+  charset 415_gtdb_r207_bac120_TIGR01059.faa = training_loci_100/415_gtdb_r207_bac120_TIGR01059.faa: ;
+  charset 444_gtdb_r207_bac120_PF00380.20.faa = training_loci_100/444_gtdb_r207_bac120_PF00380.20.faa: ;
+  charset 450_gtdb_r207_bac120_TIGR00090.faa = training_loci_100/450_gtdb_r207_bac120_TIGR00090.faa: ;
+  charset 464_gtdb_r207_bac120_TIGR00593.faa = training_loci_100/464_gtdb_r207_bac120_TIGR00593.faa: ;
+  charset 484_gtdb_r207_bac120_TIGR00634.faa = training_loci_100/484_gtdb_r207_bac120_TIGR00634.faa: ;
+  charset 487_gtdb_r207_bac120_TIGR00082.faa = training_loci_100/487_gtdb_r207_bac120_TIGR00082.faa: ;
+  charset 505_gtdb_r207_bac120_TIGR00054.faa = training_loci_100/505_gtdb_r207_bac120_TIGR00054.faa: ;
+  charset 507_gtdb_r207_bac120_TIGR00810.faa = training_loci_100/507_gtdb_r207_bac120_TIGR00810.faa: ;
+  charset 526_gtdb_r207_bac120_TIGR01071.faa = training_loci_100/526_gtdb_r207_bac120_TIGR01071.faa: ;
+  charset 527_gtdb_r207_bac120_TIGR01059.faa = training_loci_100/527_gtdb_r207_bac120_TIGR01059.faa: ;
+  charset 532_gtdb_r207_bac120_TIGR01059.faa = training_loci_100/532_gtdb_r207_bac120_TIGR01059.faa: ;
+  charset 539_gtdb_r207_bac120_PF00466.21.faa = training_loci_100/539_gtdb_r207_bac120_PF00466.21.faa: ;
+  charset 546_gtdb_r207_bac120_TIGR02350.faa = training_loci_100/546_gtdb_r207_bac120_TIGR02350.faa: ;
+  charset 547_gtdb_r207_bac120_TIGR01169.faa = training_loci_100/547_gtdb_r207_bac120_TIGR01169.faa: ;
+  charset 550_gtdb_r207_bac120_TIGR00054.faa = training_loci_100/550_gtdb_r207_bac120_TIGR00054.faa: ;
+  charset 550_gtdb_r207_bac120_TIGR00810.faa = training_loci_100/550_gtdb_r207_bac120_TIGR00810.faa: ;
+  charset 553_gtdb_r207_bac120_TIGR00043.faa = training_loci_100/553_gtdb_r207_bac120_TIGR00043.faa: ;
+  charset 557_gtdb_r207_bac120_TIGR00922.faa = training_loci_100/557_gtdb_r207_bac120_TIGR00922.faa: ;
+  charset 562_gtdb_r207_bac120_TIGR01953.faa = training_loci_100/562_gtdb_r207_bac120_TIGR01953.faa: ;
+  charset 566_gtdb_r207_bac120_TIGR00168.faa = training_loci_100/566_gtdb_r207_bac120_TIGR00168.faa: ;
+  charset 569_gtdb_r207_bac120_TIGR00963.faa = training_loci_100/569_gtdb_r207_bac120_TIGR00963.faa: ;
+  charset 579_gtdb_r207_bac120_TIGR03654.faa = training_loci_100/579_gtdb_r207_bac120_TIGR03654.faa: ;
+  charset 580_gtdb_r207_bac120_TIGR00922.faa = training_loci_100/580_gtdb_r207_bac120_TIGR00922.faa: ;
+  charset 582_gtdb_r207_bac120_TIGR01082.faa = training_loci_100/582_gtdb_r207_bac120_TIGR01082.faa: ;
+  charset 586_gtdb_r207_bac120_TIGR02027.faa = training_loci_100/586_gtdb_r207_bac120_TIGR02027.faa: ;
+  charset 589_gtdb_r207_bac120_TIGR00496.faa = training_loci_100/589_gtdb_r207_bac120_TIGR00496.faa: ;
+  charset 599_gtdb_r207_bac120_TIGR01394.faa = training_loci_100/599_gtdb_r207_bac120_TIGR01394.faa: ;
+  charset 600_gtdb_r207_bac120_TIGR00095.faa = training_loci_100/600_gtdb_r207_bac120_TIGR00095.faa: ;
+  charset 600_gtdb_r207_bac120_TIGR00593.faa = training_loci_100/600_gtdb_r207_bac120_TIGR00593.faa: ;
+  charset 600_gtdb_r207_bac120_TIGR01146.faa = training_loci_100/600_gtdb_r207_bac120_TIGR01146.faa: ;
+  charset 600_gtdb_r207_bac120_TIGR02012.faa = training_loci_100/600_gtdb_r207_bac120_TIGR02012.faa: ;
+  charset 602_gtdb_r207_bac120_TIGR00090.faa = training_loci_100/602_gtdb_r207_bac120_TIGR00090.faa: ;
+  charset 607_gtdb_r207_bac120_TIGR00755.faa = training_loci_100/607_gtdb_r207_bac120_TIGR00755.faa: ;
+  charset 623_gtdb_r207_bac120_TIGR00456.faa = training_loci_100/623_gtdb_r207_bac120_TIGR00456.faa: ;
+  charset 624_gtdb_r207_bac120_TIGR00436.faa = training_loci_100/624_gtdb_r207_bac120_TIGR00436.faa: ;
+  charset 626_gtdb_r207_bac120_TIGR02350.faa = training_loci_100/626_gtdb_r207_bac120_TIGR02350.faa: ;
+  charset 627_gtdb_r207_bac120_TIGR01066.faa = training_loci_100/627_gtdb_r207_bac120_TIGR01066.faa: ;
+  charset 635_gtdb_r207_bac120_TIGR00442.faa = training_loci_100/635_gtdb_r207_bac120_TIGR00442.faa: ;
+  charset 636_gtdb_r207_bac120_TIGR01063.faa = training_loci_100/636_gtdb_r207_bac120_TIGR01063.faa: ;
+  charset 649_gtdb_r207_bac120_TIGR00420.faa = training_loci_100/649_gtdb_r207_bac120_TIGR00420.faa: ;
+  charset 652_gtdb_r207_bac120_TIGR00539.faa = training_loci_100/652_gtdb_r207_bac120_TIGR00539.faa: ;
+  charset 659_gtdb_r207_bac120_TIGR00059.faa = training_loci_100/659_gtdb_r207_bac120_TIGR00059.faa: ;
+  charset 663_gtdb_r207_bac120_TIGR00663.faa = training_loci_100/663_gtdb_r207_bac120_TIGR00663.faa: ;
+  charpartition mymodels =
+    Q.yeast+I+R2: 005_gtdb_r207_bac120_TIGR00398.faa,
+    Q.yeast+I+G4: 007_gtdb_r207_bac120_TIGR00166.faa,
+    LG+I+G4: 009_gtdb_r207_bac120_TIGR00928.faa,
+    LG+I+G4: 011_gtdb_r207_bac120_TIGR00092.faa,
+    LG+I+R4: 011_gtdb_r207_bac120_TIGR00337.faa,
+    LG+I+G4: 019_gtdb_r207_bac120_TIGR00396.faa,
+    Q.insect+I+R4: 032_gtdb_r207_bac120_TIGR00663.faa,
+    Q.yeast+I+G4: 034_gtdb_r207_bac120_TIGR00064.faa,
+    Q.insect+I+G4: 035_gtdb_r207_bac120_TIGR01171.faa,
+    LG+I+G4: 058_gtdb_r207_bac120_TIGR00006.faa,
+    LG+I+G4: 058_gtdb_r207_bac120_TIGR01171.faa,
+    LG+R4: 061_gtdb_r207_bac120_TIGR01039.faa,
+    LG+I+G4: 065_gtdb_r207_bac120_TIGR01510.faa,
+    Q.insect+I+G4: 067_gtdb_r207_bac120_TIGR01632.faa,
+    Q.yeast+F+I+G4: 068_gtdb_r207_bac120_TIGR00959.faa,
+    Q.pfam+I: 090_gtdb_r207_bac120_TIGR01029.faa,
+    Q.pfam+I+R4: 094_gtdb_r207_bac120_TIGR00095.faa,
+    LG+G4: 103_gtdb_r207_bac120_TIGR01164.faa,
+    Q.yeast+R4: 110_gtdb_r207_bac120_PF01025.20.faa,
+    Q.insect+R4: 115_gtdb_r207_bac120_TIGR01391.faa,
+    LG+I+G4: 122_gtdb_r207_bac120_TIGR00250.faa,
+    Q.yeast+I+G4: 123_gtdb_r207_bac120_TIGR01071.faa,
+    LG+I+G4: 145_gtdb_r207_bac120_TIGR00468.faa,
+    Q.insect+R4: 159_gtdb_r207_bac120_TIGR00487.faa,
+    Q.insect+F+I+G4: 166_gtdb_r207_bac120_TIGR02397.faa,
+    Q.insect+I+R4: 174_gtdb_r207_bac120_TIGR03594.faa,
+    LG+F+I+G4: 178_gtdb_r207_bac120_TIGR00064.faa,
+    Q.pfam+F+I+R4: 178_gtdb_r207_bac120_TIGR01082.faa,
+    Q.insect+I+R2: 185_gtdb_r207_bac120_TIGR00615.faa,
+    Q.yeast+I+R3: 189_gtdb_r207_bac120_TIGR00398.faa,
+    LG+I+R4: 194_gtdb_r207_bac120_TIGR00460.faa,
+    Q.yeast+I+G4: 201_gtdb_r207_bac120_TIGR03654.faa,
+    LG+I+G4: 202_gtdb_r207_bac120_TIGR01082.faa,
+    Q.insect+I+G4: 209_gtdb_r207_bac120_TIGR00043.faa,
+    Q.pfam+I+G4: 215_gtdb_r207_bac120_TIGR01953.faa,
+    Q.insect+R4: 233_gtdb_r207_bac120_TIGR00663.faa,
+    LG+F+I+G4: 240_gtdb_r207_bac120_TIGR03723.faa,
+    LG+F+I+R4: 241_gtdb_r207_bac120_TIGR00593.faa,
+    Q.insect+G4: 266_gtdb_r207_bac120_TIGR00959.faa,
+    Q.pfam+I+G4: 270_gtdb_r207_bac120_TIGR00964.faa,
+    Q.yeast+I+G4: 270_gtdb_r207_bac120_TIGR03654.faa,
+    Q.yeast+F+G4: 272_gtdb_r207_bac120_TIGR00115.faa,
+    Q.insect+I+G4: 276_gtdb_r207_bac120_TIGR00717.faa,
+    LG+I+R2: 304_gtdb_r207_bac120_TIGR01171.faa,
+    Q.yeast+F+I+G4: 319_gtdb_r207_bac120_TIGR00963.faa,
+    Q.yeast+I+R4: 320_gtdb_r207_bac120_TIGR00392.faa,
+    Q.yeast+F+I+G4: 326_gtdb_r207_bac120_TIGR00435.faa,
+    LG+I+R2: 327_gtdb_r207_bac120_TIGR00065.faa,
+    Q.insect+G4: 341_gtdb_r207_bac120_PF00380.20.faa,
+    LG+I+R3: 358_gtdb_r207_bac120_TIGR00459.faa,
+    Q.pfam+R4: 361_gtdb_r207_bac120_TIGR00337.faa,
+    LG+I+R2: 362_gtdb_r207_bac120_TIGR00337.faa,
+    LG+R2: 364_gtdb_r207_bac120_TIGR01011.faa,
+    Q.insect+F+I+R3: 373_gtdb_r207_bac120_TIGR02350.faa,
+    Q.yeast+I+R4: 384_gtdb_r207_bac120_TIGR00362.faa,
+    Q.pfam+I+G4: 400_gtdb_r207_bac120_TIGR03263.faa,
+    Q.pfam+G4: 402_gtdb_r207_bac120_TIGR01510.faa,
+    Q.insect+I+G4: 415_gtdb_r207_bac120_TIGR01059.faa,
+    LG+I+G4: 444_gtdb_r207_bac120_PF00380.20.faa,
+    LG+G4: 450_gtdb_r207_bac120_TIGR00090.faa,
+    Q.pfam+F+I+R4: 464_gtdb_r207_bac120_TIGR00593.faa,
+    LG+F+I+G4: 484_gtdb_r207_bac120_TIGR00634.faa,
+    Q.insect+G4: 487_gtdb_r207_bac120_TIGR00082.faa,
+    Q.pfam+I+R4: 505_gtdb_r207_bac120_TIGR00054.faa,
+    Q.pfam+I: 507_gtdb_r207_bac120_TIGR00810.faa,
+    Q.pfam+G4: 526_gtdb_r207_bac120_TIGR01071.faa,
+    Q.insect+I+G4: 527_gtdb_r207_bac120_TIGR01059.faa,
+    Q.insect+R4: 532_gtdb_r207_bac120_TIGR01059.faa,
+    Q.insect+G4: 539_gtdb_r207_bac120_PF00466.21.faa,
+    Q.insect+F+I+R3: 546_gtdb_r207_bac120_TIGR02350.faa,
+    LG+I+G4: 547_gtdb_r207_bac120_TIGR01169.faa,
+    Q.pfam+I+R2: 550_gtdb_r207_bac120_TIGR00054.faa,
+    Q.pfam+I: 550_gtdb_r207_bac120_TIGR00810.faa,
+    LG+G4: 553_gtdb_r207_bac120_TIGR00043.faa,
+    Q.insect+R2: 557_gtdb_r207_bac120_TIGR00922.faa,
+    Q.insect+G4: 562_gtdb_r207_bac120_TIGR01953.faa,
+    LG+I+G4: 566_gtdb_r207_bac120_TIGR00168.faa,
+    Q.yeast+F+I+G4: 569_gtdb_r207_bac120_TIGR00963.faa,
+    Q.insect+I+G4: 579_gtdb_r207_bac120_TIGR03654.faa,
+    Q.insect+I+R2: 580_gtdb_r207_bac120_TIGR00922.faa,
+    LG+F+I+G4: 582_gtdb_r207_bac120_TIGR01082.faa,
+    LG+I: 586_gtdb_r207_bac120_TIGR02027.faa,
+    Q.insect+G4: 589_gtdb_r207_bac120_TIGR00496.faa,
+    Q.insect+I+R4: 599_gtdb_r207_bac120_TIGR01394.faa,
+    Q.insect+F+I+G4: 600_gtdb_r207_bac120_TIGR00095.faa,
+    Q.pfam+F+I+R4: 600_gtdb_r207_bac120_TIGR00593.faa,
+    Q.insect+I+G4: 600_gtdb_r207_bac120_TIGR01146.faa,
+    Q.insect+I+G4: 600_gtdb_r207_bac120_TIGR02012.faa,
+    LG+I+G4: 602_gtdb_r207_bac120_TIGR00090.faa,
+    Q.pfam+F+I+G4: 607_gtdb_r207_bac120_TIGR00755.faa,
+    Q.pfam+I+G4: 623_gtdb_r207_bac120_TIGR00456.faa,
+    Q.insect+I+R2: 624_gtdb_r207_bac120_TIGR00436.faa,
+    Q.insect+F+I+G4: 626_gtdb_r207_bac120_TIGR02350.faa,
+    Q.pfam+I+G4: 627_gtdb_r207_bac120_TIGR01066.faa,
+    Q.pfam+I+R3: 635_gtdb_r207_bac120_TIGR00442.faa,
+    Q.insect+F+I+R3: 636_gtdb_r207_bac120_TIGR01063.faa,
+    Q.pfam+I+G4: 649_gtdb_r207_bac120_TIGR00420.faa,
+    Q.pfam+I+G4: 652_gtdb_r207_bac120_TIGR00539.faa,
+    Q.insect+G4: 659_gtdb_r207_bac120_TIGR00059.faa,
+    Q.insect+I+G4: 663_gtdb_r207_bac120_TIGR00663.faa;
+end;

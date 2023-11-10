@@ -1,0 +1,44 @@
+#nexus
+begin sets;
+  charset gtdb_r207_bac120_PF00380.20.faa = loci/testing_loci/gtdb_r207_bac120_PF00380.20.faa: ;
+  charset gtdb_r207_bac120_PF00410.20.faa = loci/testing_loci/gtdb_r207_bac120_PF00410.20.faa: ;
+  charset gtdb_r207_bac120_PF01025.20.faa = loci/testing_loci/gtdb_r207_bac120_PF01025.20.faa: ;
+  charset gtdb_r207_bac120_PF03726.15.faa = loci/testing_loci/gtdb_r207_bac120_PF03726.15.faa: ;
+  charset gtdb_r207_bac120_TIGR00043.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00043.faa: ;
+  charset gtdb_r207_bac120_TIGR00082.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00082.faa: ;
+  charset gtdb_r207_bac120_TIGR00088.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00088.faa: ;
+  charset gtdb_r207_bac120_TIGR00194.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00194.faa: ;
+  charset gtdb_r207_bac120_TIGR00250.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00250.faa: ;
+  charset gtdb_r207_bac120_TIGR00396.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00396.faa: ;
+  charset gtdb_r207_bac120_TIGR00420.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00420.faa: ;
+  charset gtdb_r207_bac120_TIGR00431.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00431.faa: ;
+  charset gtdb_r207_bac120_TIGR00442.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00442.faa: ;
+  charset gtdb_r207_bac120_TIGR00663.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00663.faa: ;
+  charset gtdb_r207_bac120_TIGR01063.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01063.faa: ;
+  charset gtdb_r207_bac120_TIGR01302.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01302.faa: ;
+  charset gtdb_r207_bac120_TIGR01953.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01953.faa: ;
+  charset gtdb_r207_bac120_TIGR02397.faa = loci/testing_loci/gtdb_r207_bac120_TIGR02397.faa: ;
+  charset gtdb_r207_bac120_TIGR03594.faa = loci/testing_loci/gtdb_r207_bac120_TIGR03594.faa: ;
+  charset gtdb_r207_bac120_TIGR03953.faa = loci/testing_loci/gtdb_r207_bac120_TIGR03953.faa: ;
+  charpartition mymodels =
+    Q.bacteria_phylum_1+I+R8: gtdb_r207_bac120_PF00380.20.faa,
+    Q.bacteria_phylum_1+I+R6: gtdb_r207_bac120_PF00410.20.faa,
+    Q.bacteria_phylum_1+R7: gtdb_r207_bac120_PF01025.20.faa,
+    Q.bacteria_phylum_1+I+R6: gtdb_r207_bac120_PF03726.15.faa,
+    Q.bacteria_phylum_1+I+R7: gtdb_r207_bac120_TIGR00043.faa,
+    Q.bacteria_phylum_1+R6: gtdb_r207_bac120_TIGR00082.faa,
+    Q.bacteria_phylum_1+R8: gtdb_r207_bac120_TIGR00088.faa,
+    Q.bacteria_phylum_1+R9: gtdb_r207_bac120_TIGR00194.faa,
+    Q.bacteria_phylum_1+I+R6: gtdb_r207_bac120_TIGR00250.faa,
+    Q.bacteria_phylum_1+R10: gtdb_r207_bac120_TIGR00396.faa,
+    Q.bacteria_phylum_1+I+R10: gtdb_r207_bac120_TIGR00420.faa,
+    Q.bacteria_phylum_1+I+R8: gtdb_r207_bac120_TIGR00431.faa,
+    Q.bacteria_phylum_1+R9: gtdb_r207_bac120_TIGR00442.faa,
+    Q.yeast+I+R8: gtdb_r207_bac120_TIGR00663.faa,
+    Q.bacteria_phylum_1+R10: gtdb_r207_bac120_TIGR01063.faa,
+    Q.bacteria_phylum_1+I+R7: gtdb_r207_bac120_TIGR01302.faa,
+    Q.bacteria_phylum_1+R8: gtdb_r207_bac120_TIGR01953.faa,
+    Q.bacteria_phylum_1+R9: gtdb_r207_bac120_TIGR02397.faa,
+    Q.bacteria_phylum_1+I+R8: gtdb_r207_bac120_TIGR03594.faa,
+    Q.bacteria_phylum_1+I+R7: gtdb_r207_bac120_TIGR03953.faa;
+end;

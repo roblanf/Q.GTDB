@@ -1,0 +1,44 @@
+#nexus
+begin sets;
+  charset gtdb_r207_bac120_TIGR00020.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00020.faa: ;
+  charset gtdb_r207_bac120_TIGR00083.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00083.faa: ;
+  charset gtdb_r207_bac120_TIGR00090.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00090.faa: ;
+  charset gtdb_r207_bac120_TIGR00158.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00158.faa: ;
+  charset gtdb_r207_bac120_TIGR00344.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00344.faa: ;
+  charset gtdb_r207_bac120_TIGR00382.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00382.faa: ;
+  charset gtdb_r207_bac120_TIGR00392.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00392.faa: ;
+  charset gtdb_r207_bac120_TIGR00398.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00398.faa: ;
+  charset gtdb_r207_bac120_TIGR00460.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00460.faa: ;
+  charset gtdb_r207_bac120_TIGR00496.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00496.faa: ;
+  charset gtdb_r207_bac120_TIGR00593.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00593.faa: ;
+  charset gtdb_r207_bac120_TIGR00964.faa = loci/testing_loci/gtdb_r207_bac120_TIGR00964.faa: ;
+  charset gtdb_r207_bac120_TIGR01059.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01059.faa: ;
+  charset gtdb_r207_bac120_TIGR01082.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01082.faa: ;
+  charset gtdb_r207_bac120_TIGR01146.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01146.faa: ;
+  charset gtdb_r207_bac120_TIGR01302.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01302.faa: ;
+  charset gtdb_r207_bac120_TIGR01393.faa = loci/testing_loci/gtdb_r207_bac120_TIGR01393.faa: ;
+  charset gtdb_r207_bac120_TIGR02432.faa = loci/testing_loci/gtdb_r207_bac120_TIGR02432.faa: ;
+  charset gtdb_r207_bac120_TIGR03594.faa = loci/testing_loci/gtdb_r207_bac120_TIGR03594.faa: ;
+  charset gtdb_r207_bac120_TIGR03625.faa = loci/testing_loci/gtdb_r207_bac120_TIGR03625.faa: ;
+  charpartition mymodels =
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00020.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00083.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00090.faa,
+    Q.bacteria_order_1+R10: gtdb_r207_bac120_TIGR00158.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00344.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00382.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00392.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00398.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00460.faa,
+    Q.insect+I+R10: gtdb_r207_bac120_TIGR00496.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR00593.faa,
+    Q.pfam+R10: gtdb_r207_bac120_TIGR00964.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR01059.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR01082.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR01146.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR01302.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR01393.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR02432.faa,
+    Q.bacteria_order_1+R10: gtdb_r207_bac120_TIGR03594.faa,
+    Q.bacteria_order_1+I+R10: gtdb_r207_bac120_TIGR03625.faa;
+end;
