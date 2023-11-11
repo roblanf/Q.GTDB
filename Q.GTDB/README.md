@@ -12,18 +12,23 @@ Within each alignment, models are ordered from worst to best.
 |-----------|----------------------|---------------------|----------------------|-----------|--------------------------------------------|
 | Reduced   | Q.bacteria_phylum_1  | -131190357.878285   | 262629875.756571     | 1866.073  | QBp1G.raxml.log                            |
 | Reduced   | Q.bacteria_class_1   | -131099420.890135   | 262448001.780271     | 1442.474  | Q.bacteria_class_1_G_reduced_aln.raxml.log |
+| Reduced   | Q.insect             | -130710969.014237   | 261671098.028474     | 3368.046  | Q.insect_G_reduced.raxml.log              |
+| Reduced   | Q.yeast              | -130701947.976616   | 261653055.953232     | 2285.802  | Q.yeast_G_reduced.raxml.log               |
 | Reduced   | LG                   | -130592049.145638   | 261433258.291277     | 3785.556  | LGG.raxml.log                              |
 | Reduced   | Q.bacteria_order_1   | -130587008.543687   | 261423177.087373     | 1382.725  | Q.bacteria_order_1_G_reduced_aln.raxml.log |
+| Reduced   | Q.pfam               | -130568424.104676   | 261386008.209351     | 3871.505  | Q.pfam_G_reduced.raxml.log                |
 | Reduced   | Q.GTDB_sub_1k        | -130190308.686682   | 260629777.373364     | 1921.265  | Q.GTDB_sub_1k_G_reduced_aln.raxml.log      |
 | Reduced   | Q.GTDB_sub_5k        | -130187129.127843   | 260623418.255687     | 1466.727  | Q.GTDB_sub_5k_G_reduced_aln.raxml.log      |
 | Full      | Q.bacteria_phylum_1  | -1088000564.208966  | 2176250288.417933    | 17965.016 | QBp1G_full.raxml.log                       |
 | Full      | Q.bacteria_class_1   | -1086808724.440440  | 2173866608.880880    | 12427.577 | Q.bacteria_class_1_G_full_aln.raxml.log    |
+| Full      | Q.yeast              | -1083245058.148305  | 2166739276.296611    | 18017.715 | Q.yeast_G_full.raxml.log                  |
 | Full      | Q.insect             | -1083233269.103021  | 2166715698.206043    | 25808.033 | Q.insect_G_full.raxml.log                  |
 | Full      | Q.bacteria_order_1   | -1082202438.322814  | 2164654036.645627    | 11859.777 | Q.bacteria_order_1_G_full_aln.raxml.log    |
 | Full      | LG                   | -1081479614.701307  | 2163208389.402613    | 20892.610 | LGG_full.raxml.log                         |
 | Full      | Q.pfam               | -1080441362.693915  | 2161131885.387830    | 12178.108 | Q.pfam_G_full.raxml.log                   |
 | Full      | Q.GTDB_sub_1k        | -1079048060.530090  | 2158345281.060180    | 9662.451  | Q.GTDB_sub_1k_G_full_aln.raxml.log        |
 | Full      | Q.bactera_sub_5k     | -1078809634.619930  | 2157868429.239860    | 11799.372 | Q.GTDB_sub_5k_G_full_aln.raxml.log         |
+
 
 
 Brief model explanations
@@ -743,15 +748,15 @@ I'll also just fit the other common models for reference, Q.insect, Q.yeast, and
 ```{bash}
 raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.insect+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.insect_G_full
 
-raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.yeast+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.yeast_G_full
-
 raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.pfam+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.pfam_G_full
 
-raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.insect+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.insect_G_full
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_full.faa --model Q.yeast+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.yeast_G_full
 
-raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.yeast+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.yeast_G_full
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.insect+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.insect_G_reduced
 
-raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.pfam+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.pfam_G_full
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.yeast+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.yeast_G_reduced
+
+raxml-ng --msa ../concat_alignments/gtdb_r207_bac120_concatenated.faa --model Q.pfam+G --threads 16 --force perf_threads --tree ../r207_original_clean.tree --evaluate --lh-epsilon 0.1 --prefix 03_testing/Q.pfam_G_reduced
 
 ```
 
