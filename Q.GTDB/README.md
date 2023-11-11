@@ -1401,3 +1401,11 @@ write_trees_and_taxa(subtrees, "Q.GTDB_sub250")
 Next we create the alignments, as above. Based on the previous analysis, I just build datasets for 1K, 5K, and 10K loci here.
 
 I wrote this into a script called `setup_alignments.sh`, based on the bash code for doing this above.
+
+### Q.GTDB_sub250_5k
+
+This is the matrix trained on 5k input alignments. The script is `Q.GTDB250_sub_5k.sh`. Let's see how this one goes before going further.
+
+One good option here might be (let's see) to train this matrix, then to use it as an input matrix for the 10K dataset. This is OK because teh test alignments are already separated.
+
+
