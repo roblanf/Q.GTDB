@@ -2,9 +2,6 @@ analysis="Q.GTDB_sub250"
 training="training_loci_5k"
 name="5k"
 new_model=$analysis"_"$name
-
-
-# 5. Estimate the models
 log=$training"_log.txt"
 
 echo "Log file for "$training > $log

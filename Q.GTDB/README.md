@@ -12,22 +12,24 @@ Within each alignment, models are ordered from worst to best.
 |-----------|----------------------|---------------------|----------------------|-----------|--------------------------------------------|
 | Reduced   | Q.bacteria_phylum_1  | -131190357.878285   | 262629875.756571     | 1866.073  | QBp1G.raxml.log                            |
 | Reduced   | Q.bacteria_class_1   | -131099420.890135   | 262448001.780271     | 1442.474  | Q.bacteria_class_1_G_reduced_aln.raxml.log |
-| Reduced   | Q.insect             | -130710969.014237   | 261671098.028474     | 3368.046  | Q.insect_G_reduced.raxml.log              |
-| Reduced   | Q.yeast              | -130701947.976616   | 261653055.953232     | 2285.802  | Q.yeast_G_reduced.raxml.log               |
+| Reduced   | Q.insect             | -130710969.014237   | 261671098.028474     | 3368.046  | Q.insect_G_reduced.raxml.log               |
+| Reduced   | Q.yeast              | -130701947.976616   | 261653055.953232     | 2285.802  | Q.yeast_G_reduced.raxml.log                |
 | Reduced   | LG                   | -130592049.145638   | 261433258.291277     | 3785.556  | LGG.raxml.log                              |
 | Reduced   | Q.bacteria_order_1   | -130587008.543687   | 261423177.087373     | 1382.725  | Q.bacteria_order_1_G_reduced_aln.raxml.log |
-| Reduced   | Q.pfam               | -130568424.104676   | 261386008.209351     | 3871.505  | Q.pfam_G_reduced.raxml.log                |
-| Reduced   | Q.GTDB_sub_1k        | -130190308.686682   | 260629777.373364     | 1921.265  | Q.GTDB_sub_1k_G_reduced_aln.raxml.log      |
-| Reduced   | Q.GTDB_sub_5k        | -130187129.127843   | 260623418.255687     | 1466.727  | Q.GTDB_sub_5k_G_reduced_aln.raxml.log      |
+| Reduced   | Q.pfam               | -130568424.104676   | 261386008.209351     | 3871.505  | Q.pfam_G_reduced.raxml.log                 |
+| Reduced   | Q.GTDB_sub_1k_100    | -130190308.686682   | 260629777.373364     | 1921.265  | Q.GTDB_sub_1k_G_reduced_aln.raxml.log      |
+| Reduced   | Q.GTDB_sub_5k_100    | -130187129.127843   | 260623418.255687     | 1466.727  | Q.GTDB_sub_5k_G_reduced_aln.raxml.log      |
+| Reduced   | Q.GTDB_sub_5k_250    | -130118992.141725   | 260487144.283450     | 1970.654  | Q.GTDB_sub250_5k_G_reduced_aln.raxml.log   |
 | Full      | Q.bacteria_phylum_1  | -1088000564.208966  | 2176250288.417933    | 17965.016 | QBp1G_full.raxml.log                       |
 | Full      | Q.bacteria_class_1   | -1086808724.440440  | 2173866608.880880    | 12427.577 | Q.bacteria_class_1_G_full_aln.raxml.log    |
-| Full      | Q.yeast              | -1083245058.148305  | 2166739276.296611    | 18017.715 | Q.yeast_G_full.raxml.log                  |
+| Full      | Q.yeast              | -1083245058.148305  | 2166739276.296611    | 18017.715 | Q.yeast_G_full.raxml.log                   |
 | Full      | Q.insect             | -1083233269.103021  | 2166715698.206043    | 25808.033 | Q.insect_G_full.raxml.log                  |
 | Full      | Q.bacteria_order_1   | -1082202438.322814  | 2164654036.645627    | 11859.777 | Q.bacteria_order_1_G_full_aln.raxml.log    |
 | Full      | LG                   | -1081479614.701307  | 2163208389.402613    | 20892.610 | LGG_full.raxml.log                         |
-| Full      | Q.pfam               | -1080441362.693915  | 2161131885.387830    | 12178.108 | Q.pfam_G_full.raxml.log                   |
-| Full      | Q.GTDB_sub_1k        | -1079048060.530090  | 2158345281.060180    | 9662.451  | Q.GTDB_sub_1k_G_full_aln.raxml.log        |
-| Full      | Q.bactera_sub_5k     | -1078809634.619930  | 2157868429.239860    | 11799.372 | Q.GTDB_sub_5k_G_full_aln.raxml.log         |
+| Full      | Q.pfam               | -1080441362.693915  | 2161131885.387830    | 12178.108 | Q.pfam_G_full.raxml.log                    |
+| Full      | Q.GTDB_sub_1k_100    | -1079048060.530090  | 2158345281.060180    | 9662.451  | Q.GTDB_sub_1k_G_full_aln.raxml.log         |
+| Full      | Q.GTDB_sub_5k_100    | -1078809634.619930  | 2157868429.239860    | 11799.372 | Q.GTDB_sub_5k_G_full_aln.raxml.log         |
+| Full      | Q.GTDB_sub_5k_250    | -1078203734.885810  | 2156656629.771619    | 14819.610 | Q.GTDB_sub250_5k_G_full_aln.raxml.log      |
 
 
 
@@ -37,8 +39,9 @@ Brief model explanations
 * **Q.bacteria_class_1**: one random sample per class, fix tree to r207
 * **Q.bacteria_order_1**: one random sample per order, fix tree to r207
 * **Q.bacteria_family_1**: one random sample per family, fix tree to r207
-* **Q.bactera_sub_5k**: split tree into 673 sub-trees with up to 100 taxa, split 120 loci, randomly select 5k alignments
-* **Q.bactera_sub_1k**: split tree into 673 sub-trees with up to 100 taxa, split 120 loci, randomly select 1k alignments
+* **Q.bactera_sub_5k_100**: split tree into 673 sub-trees with up to 100 taxa, split 120 loci, randomly select 5k alignments
+* **Q.bactera_sub_1k_100**: split tree into 673 sub-trees with up to 100 taxa, split 120 loci, randomly select 1k alignments
+* **Q.bactera_sub_5k_250**: split tree into sub-trees with up to 250 taxa, split 120 loci, randomly select 5k alignments
 
 
 ## Introduction
@@ -902,7 +905,7 @@ echo ""
 echo "Testing model on test loci..." >> log.txt
 echo "Frequency table of best-fit models" >> log.txt
 mkdir 03_testing
-iqtree2 -T 20 -S loci/testing_loci/ -m MF -mset LG,Q.pfam,Q.insect,Q.yeast,$new_model -pre 03_testing/test_loci_mf
+iqtree2 -T 20 -S loci/testing_loci/ -m MF -mset LG,Q.pfam,Q.insect,Q.yeast,$new_model -pre 03_testing/test_loci_mf -safe
 grep '^ *[^ ]\+:' 03_testing/test_loci_mf.best_scheme.nex | awk -F: '{print $1}' | awk '{print $NF}' | cut -d'+' -f1 | sort | uniq -c | sort -nr >> log.txt
 
 # test it on the full and the reduced datasets
@@ -1033,7 +1036,9 @@ writeLines(family_1, "family_1.txt")
 
 ```
 
+The estimation is in `family_1.sh`
 
+The testing is in `family_1_test.sh`
 
 ### Q.genus_1
 
