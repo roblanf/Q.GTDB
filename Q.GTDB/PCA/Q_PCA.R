@@ -16,10 +16,13 @@ readQ <- function(filename) {
   # make Q symmetric
   Q = (Q + t(Q))
   diag(Q) <- 0
+  
   # normalise the matrix
   Q=(Q/sum(Q))*100.0
+  R <- Q*F^-1
   return(rbind(Q, pi))
 }
+
 
 nuclear = c("WAG", "Dayhoff","JTT", "LG", "VT", "PMB", "Blosum62", "Q.pfam")
 mitochondrial = c("mtREV", "mtMAM", "mtART", "mtZOA", "mtMet" , "mtVer" , "mtInv")
